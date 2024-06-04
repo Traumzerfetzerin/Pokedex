@@ -5,12 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
+    <link rel="icon" type="image/x-icon" href="img/fav.png">
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
 
-<body onload="render(5)">
+<body onload="showCard()">
+
+    <section id="showBig">
+        <div><img id="exitBigImg" src="img/esc.png" alt=""></div>
+    </section>
+
+    <section id="contentBig">
+        <div id="showBigImg"></div>
+    </section>
+
     <div id="content"></div>
     <div id="button"></div>
+
+
 </body>
 
 </html>

@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+}
+
+#showBig {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+}
+
+#exitBigImg {
+    width: 40px;
+    height: 40px;
+}
+
+#contentBig {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+}
+
+#showBigImg {
+    border: 2px solid black;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
