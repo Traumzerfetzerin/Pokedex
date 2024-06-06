@@ -46,40 +46,52 @@ async function fetchPokeData() {
 }
 
 
-async function showCard(pokemons, forms, formName, abilitiesText, sprites, dreamWorldSprite) {
+async function showCard(cries) {
     try {
-        const pokemons = await fetchPokeData();
-        const forms = pokemons['forms'];
+        const pokemon = await fetchPokeData();
+        const forms = pokemon['forms'];
         let formName = forms[0]['name'];
 
-        // Erster Buchstabe groß
+        // Erster Buchstabe groß (charAt extrahiert das erste Zeichen der Zeichenkette)
         formName = formName.charAt(0).toUpperCase() + formName.slice(1);
 
         let abilitiesText = '';
-        for (let i = 0; i < pokemons['abilities'].length; i++) {
-            const ability = pokemons['abilities'][i]['ability'];
+        for (let i = 0; i < pokemon['abilities'].length; i++) {
+            const ability = pokemon['abilities'][i]['ability'];
             abilitiesText += ability['name'];
-            if (i < pokemons['abilities'].length - 1) {
+            if (i < pokemon['abilities'].length - 1) {
                 abilitiesText += ", ";
             }
         }
 
-        const sprites = pokemons['sprites'];
+        const sprites = pokemon['sprites'];
         const dreamWorldSprite = sprites['other']['dream_world']['front_default'];
+        const legacyCry = cries['legacy'];
 
-        document.getElementById('showBigImg').innerHTML = HTMLshowCard(pokemons, forms, formName, abilitiesText, sprites, dreamWorldSprite);
+        document.getElementById('showBigImg').innerHTML = HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite);
     } catch (error) {
         console.error(error);
     }
 }
 
 // HTML
-function HTMLshowCard(pokemons, forms, formName, abilitiesText, sprites, dreamWorldSprite) {
+function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite) {
     return /*HTML*/`
         <div>
-            <b>#${pokemons['abilities'].length} ${formName}</b><br>
+            <b>#${pokemon.id} ${formName}</b><br>
             <img src="${dreamWorldSprite}" alt="${formName} Sprite"><br>
-            Fähigkeiten: ${abilitiesText}
+            <audio controls>
+                <source src="${legacyCry}" type="audio/ogg">
+            </audio><br>
+        </div>
+        <div>
+            Abilities: ${abilitiesText}<br>
         </div>
     `;
 }
+
+const cries = {
+    "legacy": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/1.ogg"
+};
+
+showCard(cries);
