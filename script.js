@@ -53,6 +53,7 @@ async function showCard(cries) {
         let formName = forms[0]['name'];
         let experience = pokemon['base_experience'];
         let height = pokemon['height'];
+        let weight = pokemon['weight'];
 
         // Erster Buchstabe groß (charAt extrahiert das erste Zeichen der Zeichenkette)
         formName = formName.charAt(0).toUpperCase() + formName.slice(1);
@@ -70,14 +71,14 @@ async function showCard(cries) {
         const dreamWorldSprite = sprites['other']['dream_world']['front_default'];
         const legacyCry = cries['legacy'];
 
-        document.getElementById('showBigImg').innerHTML = HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height);
+        document.getElementById('showBigImg').innerHTML = HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight);
     } catch (error) {
         console.error(error);
     }
 }
 
 // HTML
-function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height) {
+function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight) {
     return /*HTML*/`
         <div>
             <b>#${pokemon.id} ${formName}</b><br>
@@ -93,7 +94,7 @@ function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSpr
         base experience: ${experience}<br>
         </div>
         <div>height: ${height}</div>
-
+<div>weight: ${weight}</div>
     `;
 }
 
