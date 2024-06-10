@@ -73,7 +73,7 @@ async function showCard(cries) {
         let sprites = pokemon['sprites'];
         let dreamWorldSprite = sprites['other']['dream_world']['front_default'];
         let legacyCry = cries['legacy'];
-
+        let color = species['color']['name']; // Holen der Farbe
 
         let flavorTextEntry = species['flavor_text_entries'].find(entry => entry.language.name === 'en' && entry.version.name === 'heartgold');
         let flavorText = flavorTextEntry ? flavorTextEntry.flavor_text : 'No flavor text available';
@@ -90,16 +90,16 @@ async function showCard(cries) {
             }
         }
 
-        document.getElementById('showBigImg').innerHTML = HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight, flavorText);
+        document.getElementById('showBigImg').innerHTML = HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight, flavorText, color);
     } catch (error) {
         console.error(error);
     }
 }
 
 // HTML
-function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight, flavorText) {
+function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight, flavorText, color) {
     return /*HTML*/`
-        <div>
+        <div style="background-color: ${color};">
             <b>#${pokemon.id} ${formName}</b><br>
             <img src="${dreamWorldSprite}" alt="${formName} Sprite"><br>
             <audio controls>
