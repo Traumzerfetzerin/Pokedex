@@ -39,46 +39,65 @@ async function render(limit) {
 
 
 async function fetchPokeData() {
-    let response = await fetch("https://pokeapi.co/api/v2/pokemon/1/");
-    let responseAsJson = await response.json();
-    console.log(responseAsJson);
-    return responseAsJson;
+    let responsePokemon = await fetch("https://pokeapi.co/api/v2/pokemon/1/");
+    let responseSpecies = await fetch("https://pokeapi.co/api/v2/pokemon-species/1/");
+    let responsePokemonAsJson = await responsePokemon.json();
+    let responseSpeciesAsJson = await responseSpecies.json();
+
+    return {
+        pokemon: responsePokemonAsJson,
+        species: responseSpeciesAsJson
+    };
 }
 
+async function fetchPokeData() {
+    let responsePokemon = await fetch("https://pokeapi.co/api/v2/pokemon/1/");
+    let responseSpecies = await fetch("https://pokeapi.co/api/v2/pokemon-species/1/");
+    let responsePokemonAsJson = await responsePokemon.json();
+    let responseSpeciesAsJson = await responseSpecies.json();
+
+    return {
+        pokemon: responsePokemonAsJson,
+        species: responseSpeciesAsJson
+    };
+}
 
 async function showCard(cries) {
     try {
-        const pokemon = await fetchPokeData();
-        const forms = pokemon['forms'];
+        let { pokemon, species } = await fetchPokeData();
+        let forms = pokemon['forms'];
         let formName = forms[0]['name'];
         let experience = pokemon['base_experience'];
         let height = pokemon['height'];
         let weight = pokemon['weight'];
+        let sprites = pokemon['sprites'];
+        let dreamWorldSprite = sprites['other']['dream_world']['front_default'];
+        let legacyCry = cries['legacy'];
+
+
+        let flavorTextEntry = species['flavor_text_entries'].find(entry => entry.language.name === 'en' && entry.version.name === 'heartgold');
+        let flavorText = flavorTextEntry ? flavorTextEntry.flavor_text : 'No flavor text available';
 
         // Erster Buchstabe groß (charAt extrahiert das erste Zeichen der Zeichenkette)
         formName = formName.charAt(0).toUpperCase() + formName.slice(1);
 
         let abilitiesText = '';
         for (let i = 0; i < pokemon['abilities'].length; i++) {
-            const ability = pokemon['abilities'][i]['ability'];
+            let ability = pokemon['abilities'][i]['ability'];
             abilitiesText += ability['name'];
             if (i < pokemon['abilities'].length - 1) {
                 abilitiesText += ", ";
             }
         }
 
-        const sprites = pokemon['sprites'];
-        const dreamWorldSprite = sprites['other']['dream_world']['front_default'];
-        const legacyCry = cries['legacy'];
-
-        document.getElementById('showBigImg').innerHTML = HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight);
+        document.getElementById('showBigImg').innerHTML = HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight, flavorText);
     } catch (error) {
         console.error(error);
     }
 }
 
 // HTML
-function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight) {
+function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight, flavorText) {
     return /*HTML*/`
         <div>
             <b>#${pokemon.id} ${formName}</b><br>
@@ -87,14 +106,20 @@ function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSpr
                 <source src="${legacyCry}" type="audio/ogg">
             </audio><br>
         </div>
-        <div>
-            abilities: ${abilitiesText}<br>
+        <div><b>${flavorText}</b><br>
         </div>
         <div>
-        base experience: ${experience}<br>
+            Abilities: ${abilitiesText}<br>
         </div>
-        <div>height: ${height}</div>
-<div>weight: ${weight}</div>
+        <div>
+            Base Experience: ${experience}<br>
+        </div>
+        <div>
+            Height: ${height}<br>
+        </div>
+        <div>
+            Weight: ${weight}<br>
+        </div>
     `;
 }
 
