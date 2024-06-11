@@ -72,6 +72,7 @@ async function showCard(cries) {
         // Erster Buchstabe groß (charAt extrahiert das erste Zeichen der Zeichenkette)
         formName = formName.charAt(0).toUpperCase() + formName.slice(1);
 
+        // Fähigkeiten extrahieren
         let abilitiesText = '';
         for (let i = 0; i < pokemon['abilities'].length; i++) {
             let ability = pokemon['abilities'][i]['ability'];
@@ -81,70 +82,86 @@ async function showCard(cries) {
             }
         }
 
-        document.getElementById('showBigImg').innerHTML = HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight, flavorText, color);
+        // Basiswerte extrahieren und als Fortschrittsbalken anzeigen
+        let baseStatsText = '';
+        for (let i = 0; i < pokemon['stats'].length; i++) {
+            let stat = pokemon['stats'][i];
+            baseStatsText += HTMLbaseStatsText(stat);
+        }
+
+        document.getElementById('showBigImg').innerHTML = HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight, flavorText, color, baseStatsText);
     } catch (error) {
         console.error(error);
     }
 }
 
-// HTML
-function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight, flavorText, color) {
+function HTMLbaseStatsText(stat) {
     return /*HTML*/`
+        <div>${stat['stat']['name']}:
+            <div class="progress" role="progressbar" aria-label="${stat['stat']['name']}" aria-valuenow="${stat['base_stat']}" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar" style="width: ${stat['base_stat']}%">${stat['base_stat']}%</div>
+            </div>
+        </div><br>
+    `;
+}
 
+// HTML
+function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight, flavorText, color, baseStatsText) {
+    return /*HTML*/`
 <!-- CARD -->
-    <div class="card" >
-            <b>#${pokemon.id} ${formName} // TYPE IMG ???</b><br>
-            <img style="background-color: ${color};" src="${dreamWorldSprite}" alt="${formName} Sprite"><br>
+    <div class="card">
+        <b>#${pokemon.id} ${formName}</b><br>
+        <img style="background-color: ${color};" src="${dreamWorldSprite}" alt="${formName} Sprite"><br>
         <div class="card-body">
             <p><b>${flavorText}</b></p>
         </div>
         <audio controls>
-                <source src="${legacyCry}" type="audio/ogg">
-            </audio><br>
+            <source src="${legacyCry}" type="audio/ogg">
+        </audio><br>
 
-<!-- ACCORDION -->
-<div class="accordion accordion-flush" id="accordionFlushExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-        Basic
-      </button>
-    </h2>
-    <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">
-        <div>Abilities: ${abilitiesText}<br></div>
-        <div>Base Experience: ${experience}<br></div>
-        <div>Height: ${height}<br></div>
-        <div>Weight: ${weight}<br></div>
-      </div>
+    <!-- ACCORDION -->
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    Basics
+                </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <div>Abilities: ${abilitiesText}<br></div>
+                    <div>Base-Experience: ${experience}<br></div>
+                    <div>Height: ${height}<br></div>
+                    <div>Weight: ${weight}<br></div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                    Stats
+                </button>
+            </h2>
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    ${baseStatsText}
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                    Evolution
+                </button>
+            </h2>
+            <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-        Stats
-      </button>
-    </h2>
-    <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">
-        Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.
-      </div>
     </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-        Evolution
-      </button>
-    </h2>
-    <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">
-        Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.
-      </div>
-    </div>
-  </div>
-</div>
-</div>
     `;
 }
 
