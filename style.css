@@ -31,3 +31,9 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.IDname{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

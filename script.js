@@ -82,14 +82,19 @@ async function showCard(cries) {
             }
         }
 
-        // Basiswerte extrahieren und als Fortschrittsbalken anzeigen
         let baseStatsText = '';
         for (let i = 0; i < pokemon['stats'].length; i++) {
             let stat = pokemon['stats'][i];
             baseStatsText += HTMLbaseStatsText(stat);
         }
 
-        document.getElementById('showBigImg').innerHTML = HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight, flavorText, color, baseStatsText);
+        let typesArray = [];
+        for (let i = 0; i < pokemon['types'].length; i++) {
+            typesArray.push(pokemon['types'][i]['type']['name']);
+        }
+        let types = typesArray.join(', ');
+
+        document.getElementById('showBigImg').innerHTML = HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight, flavorText, color, baseStatsText, types);
     } catch (error) {
         console.error(error);
     }
@@ -106,11 +111,16 @@ function HTMLbaseStatsText(stat) {
 }
 
 // HTML
-function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight, flavorText, color, baseStatsText) {
+function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight, flavorText, color, baseStatsText, types) {
     return /*HTML*/`
+
 <!-- CARD -->
     <div class="card">
-        <b>#${pokemon.id} ${formName}</b><br>
+    <div class="IDname">
+        <div># ${pokemon.id}</div>
+        <div>${formName}</div><br>
+        <div>${types}</div>
+    </div>
         <img style="background-color: ${color};" src="${dreamWorldSprite}" alt="${formName} Sprite"><br>
         <div class="card-body">
             <p><b>${flavorText}</b></p>
