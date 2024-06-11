@@ -1,5 +1,26 @@
 let pokemons = [];
 let limit;
+let typeIcons = {
+    bug: 'icon/bug.png',
+    dark: 'icon/dark.png',
+    dragon: 'icon/dragon.png',
+    electric: 'icon/electric.png',
+    fairy: 'icon/fairy.png',
+    fighting: 'icon/fighting.png',
+    fire: 'icon/fire.png',
+    flying: 'icon/flying.png',
+    ghost: 'icon/ghost.png',
+    grass: 'icon/grass.png',
+    ground: 'icon/ground.png',
+    ice: 'icon/ice.png',
+    normal: 'icon/normal.png',
+    poison: 'icon/poison.png',
+    psychic: 'icon/psychic.png',
+    rock: 'icon/rock.png',
+    sand: 'icon/sand.png',
+    steel: 'icon/steel.png',
+    water: 'icon/water.png',
+}
 
 async function fetchDataJson(limit) { // offset = position ab dem es starten soll
     let response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`);
@@ -82,12 +103,14 @@ async function showCard(cries) {
             }
         }
 
+        // Stats extrahieren
         let baseStatsText = '';
         for (let i = 0; i < pokemon['stats'].length; i++) {
             let stat = pokemon['stats'][i];
             baseStatsText += HTMLbaseStatsText(stat);
         }
 
+        // Types extrahieren
         let typesArray = [];
         for (let i = 0; i < pokemon['types'].length; i++) {
             typesArray.push(pokemon['types'][i]['type']['name']);
@@ -100,6 +123,8 @@ async function showCard(cries) {
     }
 }
 
+
+// HTML
 function HTMLbaseStatsText(stat) {
     return /*HTML*/`
         <div>${stat['stat']['name']}:
@@ -110,7 +135,6 @@ function HTMLbaseStatsText(stat) {
     `;
 }
 
-// HTML
 function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight, flavorText, color, baseStatsText, types) {
     return /*HTML*/`
 
@@ -141,8 +165,8 @@ function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSpr
                 <div class="accordion-body">
                     <div>Abilities: ${abilitiesText}<br></div>
                     <div>Base-Experience: ${experience}<br></div>
-                    <div>Height: ${height}<br></div>
-                    <div>Weight: ${weight}<br></div>
+                    <div>Height: ${height/100} m<br></div>
+                    <div>Weight: ${weight/100} kg<br></div>
                 </div>
             </div>
         </div>
@@ -166,7 +190,7 @@ function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSpr
             </h2>
             <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
-                    Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.
+                    bla bla bla
                 </div>
             </div>
         </div>
