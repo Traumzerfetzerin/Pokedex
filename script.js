@@ -41,24 +41,15 @@ async function render(limit) {
 async function fetchPokeData() {
     let responsePokemon = await fetch("https://pokeapi.co/api/v2/pokemon/1/");
     let responseSpecies = await fetch("https://pokeapi.co/api/v2/pokemon-species/1/");
+    let responseEvolution = await fetch("https://pokeapi.co/api/v2/evolution-chain/1/");
     let responsePokemonAsJson = await responsePokemon.json();
     let responseSpeciesAsJson = await responseSpecies.json();
+    let responseEvolutionAsJson = await responseEvolution.json();
 
     return {
         pokemon: responsePokemonAsJson,
-        species: responseSpeciesAsJson
-    };
-}
-
-async function fetchPokeData() {
-    let responsePokemon = await fetch("https://pokeapi.co/api/v2/pokemon/1/");
-    let responseSpecies = await fetch("https://pokeapi.co/api/v2/pokemon-species/1/");
-    let responsePokemonAsJson = await responsePokemon.json();
-    let responseSpeciesAsJson = await responseSpecies.json();
-
-    return {
-        pokemon: responsePokemonAsJson,
-        species: responseSpeciesAsJson
+        species: responseSpeciesAsJson,
+        evolution: responseEvolutionAsJson,
     };
 }
 
@@ -73,7 +64,7 @@ async function showCard(cries) {
         let sprites = pokemon['sprites'];
         let dreamWorldSprite = sprites['other']['dream_world']['front_default'];
         let legacyCry = cries['legacy'];
-        let color = species['color']['name']; // Holen der Farbe
+        let color = species['color']['name'];
 
         let flavorTextEntry = species['flavor_text_entries'].find(entry => entry.language.name === 'en' && entry.version.name === 'heartgold');
         let flavorText = flavorTextEntry ? flavorTextEntry.flavor_text : 'No flavor text available';
@@ -99,27 +90,61 @@ async function showCard(cries) {
 // HTML
 function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight, flavorText, color) {
     return /*HTML*/`
-        <div style="background-color: ${color};">
-            <b>#${pokemon.id} ${formName}</b><br>
-            <img src="${dreamWorldSprite}" alt="${formName} Sprite"><br>
-            <audio controls>
+
+<!-- CARD -->
+    <div class="card" >
+            <b>#${pokemon.id} ${formName} // TYPE IMG ???</b><br>
+            <img style="background-color: ${color};" src="${dreamWorldSprite}" alt="${formName} Sprite"><br>
+        <div class="card-body">
+            <p><b>${flavorText}</b></p>
+        </div>
+        <audio controls>
                 <source src="${legacyCry}" type="audio/ogg">
             </audio><br>
-        </div>
-        <div><b>${flavorText}</b><br>
-        </div>
-        <div>
-            Abilities: ${abilitiesText}<br>
-        </div>
-        <div>
-            Base Experience: ${experience}<br>
-        </div>
-        <div>
-            Height: ${height}<br>
-        </div>
-        <div>
-            Weight: ${weight}<br>
-        </div>
+
+<!-- ACCORDION -->
+<div class="accordion accordion-flush" id="accordionFlushExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+        Basic
+      </button>
+    </h2>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+        <div>Abilities: ${abilitiesText}<br></div>
+        <div>Base Experience: ${experience}<br></div>
+        <div>Height: ${height}<br></div>
+        <div>Weight: ${weight}<br></div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+        Stats
+      </button>
+    </h2>
+    <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+        Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+        Evolution
+      </button>
+    </h2>
+    <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+        Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.
+      </div>
+    </div>
+  </div>
+</div>
+</div>
     `;
 }
 
