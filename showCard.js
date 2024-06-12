@@ -22,40 +22,12 @@ let typeIcons = {
     water: 'icon/water.png',
 }
 
+
 async function fetchDataJson(limit) { // offset = position ab dem es starten soll
     let response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`);
     let responseAsJson = await response.json();
     console.log(responseAsJson);
     return responseAsJson;
-}
-
-
-function loadNext(limit) {
-    render(limit);
-}
-
-
-async function render(limit) {
-    try {
-        pokemons = await fetchDataJson(limit);
-        document.getElementById('content').innerHTML = ``;
-
-        for (let i = 0; i < pokemons['results'].length; i++) {
-            const element = pokemons['results'][i];
-            console.log(element);
-            document.getElementById('content').innerHTML += /*HTML*/`
-                <div>
-                <b>#${i + 1} ${element['name']}</b><br>
-                </div>
-                <br>
-            `;
-        }
-        limit += 5;
-        document.getElementById('button').innerHTML = `
-        <button onclick="loadNext(${limit})">NEXT</button>`;
-    } catch (error) {
-        console.error(error);
-    }
 }
 
 
@@ -90,27 +62,10 @@ async function showCard(cries) {
         let flavorTextEntry = species['flavor_text_entries'].find(entry => entry.language.name === 'en' && entry.version.name === 'heartgold');
         let flavorText = flavorTextEntry ? flavorTextEntry.flavor_text : 'No flavor text available';
 
-        // Erster Buchstabe groß (charAt extrahiert das erste Zeichen der Zeichenkette)
+        // FIRST LETTER LARGE (charAt extrahiert erstes Zeichen der Zeichenkette)
         formName = formName.charAt(0).toUpperCase() + formName.slice(1);
 
-        // Fähigkeiten extrahieren
-        let abilitiesText = '';
-        for (let i = 0; i < pokemon['abilities'].length; i++) {
-            let ability = pokemon['abilities'][i]['ability'];
-            abilitiesText += ability['name'];
-            if (i < pokemon['abilities'].length - 1) {
-                abilitiesText += ", ";
-            }
-        }
-
-        // Stats extrahieren
-        let baseStatsText = '';
-        for (let i = 0; i < pokemon['stats'].length; i++) {
-            let stat = pokemon['stats'][i];
-            baseStatsText += HTMLbaseStatsText(stat);
-        }
-
-        // Types extrahieren
+        // TYPES
         let typesArray = [];
         for (let i = 0; i < pokemon['types'].length; i++) {
             typesArray.push(pokemon['types'][i]['type']['name']);
@@ -121,6 +76,30 @@ async function showCard(cries) {
     } catch (error) {
         console.error(error);
     }
+}
+
+
+// STATS
+function baseStatsText(pokemon) {
+    let baseStatsText = '';
+    for (let i = 0; i < pokemon['stats'].length; i++) {
+        let stat = pokemon['stats'][i];
+        baseStatsText += HTMLbaseStatsText(stat);
+    }
+    return baseStatsText;
+}
+
+
+// ABILITIES
+function abilitiesText(pokemon) {
+    let abilitiesText = '';
+    for (let i = 0; i < pokemon['abilities'].length; i++) {
+        let ability = pokemon['abilities'][i]['ability'];
+        abilitiesText += ability['name'];
+        if (i < pokemon['abilities'].length - 1) {
+            abilitiesText += ", ";
+        }
+    } return abilitiesText;
 }
 
 
@@ -163,10 +142,10 @@ function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSpr
             </h2>
             <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
-                    <div>Abilities: ${abilitiesText}<br></div>
+                    <div>Abilities: ${abilitiesText(pokemon)}<br></div>
                     <div>Base-Experience: ${experience}<br></div>
-                    <div>Height: ${height/100} m<br></div>
-                    <div>Weight: ${weight/100} kg<br></div>
+                    <div>Height: ${height / 100} m<br></div>
+                    <div>Weight: ${weight / 100} kg<br></div>
                 </div>
             </div>
         </div>
@@ -178,7 +157,7 @@ function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSpr
             </h2>
             <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
-                    ${baseStatsText}
+                    ${baseStatsText(pokemon)}
                 </div>
             </div>
         </div>
