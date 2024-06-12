@@ -1,36 +1,28 @@
 let pokemons = [];
 let limit;
 let typeIcons = {
-    bug: 'icon/bug.png',
-    dark: 'icon/dark.png',
-    dragon: 'icon/dragon.png',
-    electric: 'icon/electric.png',
-    fairy: 'icon/fairy.png',
-    fighting: 'icon/fighting.png',
-    fire: 'icon/fire.png',
-    flying: 'icon/flying.png',
-    ghost: 'icon/ghost.png',
-    grass: 'icon/grass.png',
-    ground: 'icon/ground.png',
-    ice: 'icon/ice.png',
-    normal: 'icon/normal.png',
-    poison: 'icon/poison.png',
-    psychic: 'icon/psychic.png',
-    rock: 'icon/rock.png',
-    sand: 'icon/sand.png',
-    steel: 'icon/steel.png',
-    water: 'icon/water.png',
+    bug: './icon/bug.png',
+    dark: './icon/dark.png',
+    dragon: './icon/dragon.png',
+    electric: './icon/electric.png',
+    fairy: './icon/fairy.png',
+    fighting: './icon/fighting.png',
+    fire: './icon/fire.png',
+    flying: './icon/flying.png',
+    ghost: './icon/ghost.png',
+    grass: './icon/grass.png',
+    ground: './icon/ground.png',
+    ice: './icon/ice.png',
+    normal: './icon/normal.png',
+    poison: './icon/poison.png',
+    psychic: './icon/psychic.png',
+    rock: './icon/rock.png',
+    sand: './icon/sand.png',
+    steel: './icon/steel.png',
+    water: './icon/water.png',
 }
 
-
-async function fetchDataJson(limit) { // offset = position ab dem es starten soll
-    let response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`);
-    let responseAsJson = await response.json();
-    console.log(responseAsJson);
-    return responseAsJson;
-}
-
-
+// DYNAMISCH GESTALTEN !!!
 async function fetchPokeData() {
     let responsePokemon = await fetch("https://pokeapi.co/api/v2/pokemon/1/");
     let responseSpecies = await fetch("https://pokeapi.co/api/v2/pokemon-species/1/");
@@ -47,6 +39,7 @@ async function fetchPokeData() {
 }
 
 async function showCard(cries) {
+    // GLOBAL MÖGLICH BZW SINNVOLL ???
     try {
         let { pokemon, species } = await fetchPokeData();
         let forms = pokemon['forms'];
@@ -58,6 +51,7 @@ async function showCard(cries) {
         let dreamWorldSprite = sprites['other']['dream_world']['front_default'];
         let legacyCry = cries['legacy'];
         let color = species['color']['name'];
+        let habitat = species['habitat']['name'];
 
         let flavorTextEntry = species['flavor_text_entries'].find(entry => entry.language.name === 'en' && entry.version.name === 'heartgold');
         let flavorText = flavorTextEntry ? flavorTextEntry.flavor_text : 'No flavor text available';
@@ -65,6 +59,7 @@ async function showCard(cries) {
         // FIRST LETTER LARGE (charAt extrahiert erstes Zeichen der Zeichenkette)
         formName = formName.charAt(0).toUpperCase() + formName.slice(1);
 
+        // CLEANCODE MÖGLICH ???
         // TYPES
         let typesArray = [];
         for (let i = 0; i < pokemon['types'].length; i++) {
@@ -72,7 +67,7 @@ async function showCard(cries) {
         }
         let types = typesArray.join(', ');
 
-        document.getElementById('showBigImg').innerHTML = HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight, flavorText, color, baseStatsText, types);
+        document.getElementById('showBigImg').innerHTML = HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight, flavorText, color, baseStatsText, types, habitat);
     } catch (error) {
         console.error(error);
     }
@@ -114,7 +109,8 @@ function HTMLbaseStatsText(stat) {
     `;
 }
 
-function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight, flavorText, color, baseStatsText, types) {
+
+function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight, flavorText, color, baseStatsText, types, habitat) {
     return /*HTML*/`
 
 <!-- CARD -->
@@ -122,7 +118,10 @@ function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSpr
     <div class="IDname">
         <div># ${pokemon.id}</div>
         <div>${formName}</div><br>
-        <div>${types}</div>
+        <div>${types}
+            <p>Habitat: ${habitat}</p>
+        </div>
+        <!-- ICON STATT TEXT !!! -->
     </div>
         <img style="background-color: ${color};" src="${dreamWorldSprite}" alt="${formName} Sprite"><br>
         <div class="card-body">

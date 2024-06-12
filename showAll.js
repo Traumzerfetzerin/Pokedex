@@ -1,3 +1,11 @@
+async function fetchDataJson(limit) { // offset = position ab dem es starten soll
+    let response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`);
+    let responseAsJson = await response.json();
+    console.log(responseAsJson);
+    return responseAsJson;
+}
+
+
 function loadNext(limit) {
     render(limit);
 }
