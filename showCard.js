@@ -26,17 +26,29 @@ let typeIcons = {
 async function fetchPokeData() {
     let responsePokemon = await fetch("https://pokeapi.co/api/v2/pokemon/1/");
     let responseSpecies = await fetch("https://pokeapi.co/api/v2/pokemon-species/1/");
+    
+    // EVO
     let responseEvolution = await fetch("https://pokeapi.co/api/v2/evolution-chain/1/");
+    let responseEvoNext = await fetch("https://pokeapi.co/api/v2/pokemon/2/");
+    let responseEvoLast = await fetch("https://pokeapi.co/api/v2/pokemon/3/");
+
     let responsePokemonAsJson = await responsePokemon.json();
     let responseSpeciesAsJson = await responseSpecies.json();
     let responseEvolutionAsJson = await responseEvolution.json();
+
+    // EVO
+    let responseEvoNextAsJson = await responseEvoNext.json();
+    let responseEvoLastAsJson = await responseEvoLast.json();
 
     return {
         pokemon: responsePokemonAsJson,
         species: responseSpeciesAsJson,
         evolution: responseEvolutionAsJson,
+        evoNext: responseEvoNextAsJson,
+        evoLast: responseEvolutionAsJson,
     };
 }
+
 
 async function showCard(cries) {
     // GLOBAL MÖGLICH BZW SINNVOLL ???
@@ -69,6 +81,7 @@ async function showCard(cries) {
 
         document.getElementById('showBigImg').innerHTML = HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight, flavorText, color, baseStatsText, types, habitat);
     } catch (error) {
+        // ERROR CONSOLE !!!
         console.error(error);
     }
 }
@@ -98,87 +111,10 @@ function abilitiesText(pokemon) {
 }
 
 
-// HTML
-function HTMLbaseStatsText(stat) {
-    return /*HTML*/`
-        <div>${stat['stat']['name']}:
-            <div class="progress" role="progressbar" aria-label="${stat['stat']['name']}" aria-valuenow="${stat['base_stat']}" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar" style="width: ${stat['base_stat']}%">${stat['base_stat']}%</div>
-            </div>
-        </div><br>
-    `;
-}
-
-
-function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight, flavorText, color, baseStatsText, types, habitat) {
-    return /*HTML*/`
-
-<!-- CARD -->
-    <div class="card">
-    <div class="IDname">
-        <div># ${pokemon.id}</div>
-        <div>${formName}</div><br>
-        <div>${types}
-            <p>Habitat: ${habitat}</p>
-        </div>
-        <!-- ICON STATT TEXT !!! -->
-    </div>
-        <img style="background-color: ${color};" src="${dreamWorldSprite}" alt="${formName} Sprite"><br>
-        <div class="card-body">
-            <p><b>${flavorText}</b></p>
-        </div>
-        <audio controls>
-            <source src="${legacyCry}" type="audio/ogg">
-        </audio><br>
-
-    <!-- ACCORDION -->
-    <div class="accordion accordion-flush" id="accordionFlushExample">
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                    Basics
-                </button>
-            </h2>
-            <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">
-                    <div>Abilities: ${abilitiesText(pokemon)}<br></div>
-                    <div>Base-Experience: ${experience}<br></div>
-                    <div>Height: ${height / 100} m<br></div>
-                    <div>Weight: ${weight / 100} kg<br></div>
-                </div>
-            </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                    Stats
-                </button>
-            </h2>
-            <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">
-                    ${baseStatsText(pokemon)}
-                </div>
-            </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                    Evolution
-                </button>
-            </h2>
-            <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">
-                    bla bla bla
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    `;
-}
-
+// AUDIO
 const cries = {
     "legacy": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/1.ogg"
 };
+
 
 showCard(cries);
