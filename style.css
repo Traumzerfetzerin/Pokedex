@@ -2,6 +2,15 @@ body {
     margin: 0;
 }
 
+html {
+    font-family: "Teko-Regular.ttf";
+}
+
+@font-face {
+    font-family: Teko-Regular;
+    src: url('./fonts/static/Teko-Regular.ttf');
+}
+
 #showBig {
     display: flex;
     justify-content: center;
@@ -32,7 +41,7 @@ body {
     align-items: center;
 }
 
-.IDname{
+.IDname {
     display: flex;
     justify-content: space-around;
     align-items: center;

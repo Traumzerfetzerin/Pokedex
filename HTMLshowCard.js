@@ -10,7 +10,14 @@ function HTMLbaseStatsText(stat) {
 }
 
 
-function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSprite, experience, height, weight, flavorText, color, baseStatsText, types, habitat) {
+// TYPES
+function HTMLtype(i) {
+    return /*HTML*/`
+<img src="./icon/${pokemon['types'][i]['type']['name']}.png" alt="">`
+}
+
+
+function HTMLshowCard(legacyCry, pokemon, formName, dreamWorldSprite, experience, height, weight, flavorText, color, habitat) {
     return /*HTML*/`
 
 <!-- CARD -->
@@ -18,10 +25,9 @@ function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSpr
     <div class="IDname">
         <div># ${pokemon.id}</div>
         <div>${formName}</div><br>
-        <div>${types}
-            <p>Habitat: ${habitat}</p>
+        <div id="typ"></div>
+            <div><p>Habitat: ${habitat}</p>
         </div>
-        <!-- ICON STATT TEXT !!! -->
     </div>
         <img style="background-color: ${color};" src="${dreamWorldSprite}" alt="${formName} Sprite"><br>
         <div class="card-body">
@@ -68,7 +74,7 @@ function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSpr
             </h2>
             <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
-                    bla bla bla
+                bla bla bla
                 </div>
             </div>
         </div>
@@ -76,3 +82,4 @@ function HTMLshowCard(legacyCry, pokemon, formName, abilitiesText, dreamWorldSpr
     </div>
     `;
 }
+
