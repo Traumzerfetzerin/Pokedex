@@ -2,27 +2,6 @@ let pokemon, species;
 let pokemons = [];
 let typesArray = [];
 let limit;
-let typeIcons = {
-    bug: './icon/bug.png',
-    dark: './icon/dark.png',
-    dragon: './icon/dragon.png',
-    electric: './icon/electric.png',
-    fairy: './icon/fairy.png',
-    fighting: './icon/fighting.png',
-    fire: './icon/fire.png',
-    flying: './icon/flying.png',
-    ghost: './icon/ghost.png',
-    grass: './icon/grass.png',
-    ground: './icon/ground.png',
-    ice: './icon/ice.png',
-    normal: './icon/normal.png',
-    poison: './icon/poison.png',
-    psychic: './icon/psychic.png',
-    rock: './icon/rock.png',
-    sand: './icon/sand.png',
-    steel: './icon/steel.png',
-    water: './icon/water.png',
-}
 
 
 async function fetchPokeData(position) {
