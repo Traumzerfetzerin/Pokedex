@@ -65,20 +65,7 @@ function getAllFunctions(dreamWorldSprite, color, pokemon, upperName, habitat, f
     getHabitat(habitat);
     getFlavorText(flavorText);
     getAudio(legacyCry);
-}
-
-
-// GET PICTURE
-function getPicture(dreamWorldSprite) {
-    let picture = document.createElement('img'); // erzeugt HTML-Element, in dem Fall ein Bild
-    picture.src = dreamWorldSprite; // weitere Attribute anpassen wie zB statt src - width
-    document.getElementById('bgImg').appendChild(picture); // wo soll es angezeigt werden, was wird angezeigt
-}
-
-
-// GET BACKGROUND-COLOR
-function getBackgroundColor(color) {
-    document.getElementById('bgImg').style.backgroundColor = color;
+    pokemonAbilities(pokemon);
 }
 
 
@@ -102,30 +89,6 @@ function formName() {
 }
 
 
-// STATS
-function baseStatsText() {
-    let baseStatsText = '';
-    for (let i = 0; i < pokemon['stats'].length; i++) {
-        let stat = pokemon['stats'][i];
-        baseStatsText += HTMLbaseStatsText(stat);
-    }
-    return baseStatsText;
-}
-
-
-// ABILITIES
-function abilitiesText() {
-    let abilitiesText = '';
-    for (let i = 0; i < pokemon['abilities'].length; i++) {
-        let ability = pokemon['abilities'][i]['ability'];
-        abilitiesText += ability['name'];
-        if (i < pokemon['abilities'].length - 1) {
-            abilitiesText += ", ";
-        }
-    } return abilitiesText;
-}
-
-
 // GET TYPES
 function getType() {
     for (let i = 0; i < pokemon['types'].length; i++) {
@@ -138,6 +101,20 @@ function getType() {
 // GET HABITAT
 function getHabitat(habitat) {
     document.getElementById('habitat').innerHTML += habitat;
+}
+
+
+// GET PICTURE
+function getPicture(dreamWorldSprite) {
+    let picture = document.createElement('img'); // erzeugt HTML-Element, in dem Fall ein Bild
+    picture.src = dreamWorldSprite; // weitere Attribute anpassen wie zB statt src - width
+    document.getElementById('bgImg').appendChild(picture); // wo soll es angezeigt werden, was wird angezeigt
+}
+
+
+// GET BACKGROUND-COLOR
+function getBackgroundColor(color) {
+    document.getElementById('bgImg').style.backgroundColor = color;
 }
 
 
@@ -156,6 +133,50 @@ function getAudio(legacyCry) {
     pokemonCry.type = 'audio/mpeg';
     document.getElementById('pokemonAudio').appendChild(pokemonCry); // wo soll es angezeigt werden, was wird angezeigt
 }
+
+
+// BASICS-ABILITIES
+function abilitiesText(pokemon) {
+    let abilitiesText = '';
+    for (let i = 0; i < pokemon['abilities'].length; i++) {
+        let ability = pokemon['abilities'][i]['ability'];
+        abilitiesText += ability['name'];
+        if (i < pokemon['abilities'].length - 1) {
+            abilitiesText += ", ";
+        }
+    } return abilitiesText;
+}
+
+
+function pokemonAbilities(pokemon) {
+    document.getElementById('pokemonAbilities').innerHTML = abilitiesText(pokemon);
+}
+
+
+// STATS
+function baseStatsText() {
+    let baseStatsText = '';
+    for (let i = 0; i < pokemon['stats'].length; i++) {
+        let stat = pokemon['stats'][i];
+        baseStatsText += HTMLbaseStatsText(stat);
+    }
+    return baseStatsText;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function turnRight(i) {
