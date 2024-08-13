@@ -52,14 +52,30 @@ async function showCard(position) {
     let upperName = formName();
 
     getPicture(dreamWorldSprite);
+    getBackgroundColor(color);
+    getPokemonID(pokemon)
 }
 
 
 // GET PICTURE
-function getPicture(dreamWorldSprite){
+function getPicture(dreamWorldSprite) {
     let picture = document.createElement('img'); // erzeugt HTML-Element, in dem Fall ein Bild
     picture.src = dreamWorldSprite; // weitere Attribute anpassen wie zB statt src - width
     document.getElementById('bgImg').appendChild(picture); // wo soll es angezeigt werden, was wird angezeigt
+
+}
+
+
+// GET BACKGROUND-COLOR
+function getBackgroundColor(color) {
+    document.getElementById('bgImg').style.backgroundColor = color;
+}
+
+
+// GET ID
+function getPokemonID(pokemon) {
+    document.getElementById('IDpokemon').innerHTML += pokemon.id;
+    document.getElementById('IDpokemon').style.fontWeight = "bold";
 }
 
 

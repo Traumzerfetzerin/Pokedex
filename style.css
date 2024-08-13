@@ -58,3 +58,9 @@ html {
 .accordion {
     width: 300px;
 }
+
+#bgImg {
+display: flex;
+justify-content: center;
+align-items: center;
+}
