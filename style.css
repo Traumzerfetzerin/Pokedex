@@ -51,11 +51,19 @@ html {
 }
 
 #bgImg {
-display: flex;
-justify-content: center;
-align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .card-body {
     max-width: 300px;
+}
+
+#accordionFlushExample {
+    width: 300px;
+}
+
+td {
+    width: 100%;
 }

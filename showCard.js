@@ -55,7 +55,7 @@ async function showCard(position) {
 }
 
 
-
+// GET ALL FUNCTIONS
 function getAllFunctions(dreamWorldSprite, color, pokemon, upperName, habitat, flavorText, legacyCry, experience, height, weight) {
     getPicture(dreamWorldSprite);
     getBackgroundColor(color);
@@ -186,6 +186,8 @@ function baseStatsText(pokemon) {
     return baseStatsText;
 }
 
+
+// GET STATS
 function getStats(pokemon) {
     document.getElementById('baseStats').innerHTML = baseStatsText(pokemon);
 }
