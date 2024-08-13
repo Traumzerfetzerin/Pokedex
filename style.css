@@ -33,7 +33,6 @@ html {
     margin-top: 50px;
 }
 
-
 .IDname {
     display: flex;
     justify-content: space-around;
@@ -45,22 +44,18 @@ html {
     height: 30px;
 }
 
-.card {
-    width: 350px;
-}
-
 .center {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.accordion {
-    width: 300px;
-}
-
 #bgImg {
 display: flex;
 justify-content: center;
 align-items: center;
+}
+
+.card-body {
+    max-width: 300px;
 }
