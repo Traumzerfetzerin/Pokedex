@@ -53,7 +53,8 @@ async function showCard(position) {
 
     getPicture(dreamWorldSprite);
     getBackgroundColor(color);
-    getPokemonID(pokemon)
+    getPokemonID(pokemon);
+    getPokemonName(upperName);
 }
 
 
@@ -76,6 +77,12 @@ function getBackgroundColor(color) {
 function getPokemonID(pokemon) {
     document.getElementById('IDpokemon').innerHTML += pokemon.id;
     document.getElementById('IDpokemon').style.fontWeight = "bold";
+}
+
+
+// GET NAME
+function getPokemonName(upperName) {
+    document.getElementById('pokemonName').innerHTML = upperName;
 }
 
 
