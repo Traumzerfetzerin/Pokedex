@@ -55,6 +55,7 @@ async function showCard(position) {
     getBackgroundColor(color);
     getPokemonID(pokemon);
     getPokemonName(upperName);
+    type();
 }
 
 
