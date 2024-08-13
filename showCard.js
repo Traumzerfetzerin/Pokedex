@@ -55,7 +55,8 @@ async function showCard(position) {
     getBackgroundColor(color);
     getPokemonID(pokemon);
     getPokemonName(upperName);
-    type();
+    getType();
+    getHabitat(habitat);
 }
 
 
@@ -118,12 +119,18 @@ function abilitiesText() {
 }
 
 
-// TYPES
-function type() {
+// GET TYPES
+function getType() {
     for (let i = 0; i < pokemon['types'].length; i++) {
         let type = HTMLtype(i);
         document.getElementById('typ').innerHTML += type;
     }
+}
+
+
+// GET HABITAT
+function getHabitat(habitat){
+    document.getElementById('habitat').innerHTML += habitat;
 }
 
 
