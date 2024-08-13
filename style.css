@@ -12,7 +12,7 @@ html {
     src: url('./fonts/static/Teko-Regular.ttf');
 }
 
-#showBig {
+#nav {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,7 +20,7 @@ html {
     gap: 100px;
 }
 
-#showBig img {
+#nav img {
     width: 40px;
     height: 40px;
     cursor: pointer;
@@ -30,17 +30,9 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 16px;
+    margin-top: 50px;
 }
 
-#showBigImg {
-    /* border: 2px solid black; */
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
 
 .IDname {
     display: flex;
@@ -53,6 +45,16 @@ html {
     height: 30px;
 }
 
-table {
-    box-sizing: border-box;
+.card {
+    width: 350px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.accordion {
+    width: 300px;
 }

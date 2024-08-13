@@ -1,3 +1,15 @@
+// ÜBER DIE TASTATUR STEUERN 
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'ArrowLeft') {
+        turnLeft();
+    } else if (event.key === 'ArrowRight') {
+        turnRight();
+    } else if (event.key === 'Escape') {
+        backToScreen();
+    }
+});
+
+
 let pokemon, species;
 let pokemons = [];
 let typesArray = [];
@@ -39,8 +51,15 @@ async function showCard(position) {
     let flavorText = flavorTextEntry ? flavorTextEntry.flavor_text : 'No flavor text available';
     let upperName = formName();
 
-    document.getElementById('showBigImg').innerHTML = HTMLshowCard(legacyCry, pokemon, upperName, dreamWorldSprite, experience, height, weight, flavorText, color, habitat);
-    type();
+    getPicture(dreamWorldSprite);
+}
+
+
+// GET PICTURE
+function getPicture(dreamWorldSprite){
+    let picture = document.createElement('img'); // erzeugt HTML-Element, in dem Fall ein Bild
+    picture.src = dreamWorldSprite; // weitere Attribute anpassen wie zB statt src - width
+    document.getElementById('bgImg').appendChild(picture); // wo soll es angezeigt werden, was wird angezeigt
 }
 
 
@@ -83,3 +102,23 @@ function type() {
     }
 }
 
+
+function turnRight(i) {
+    i++;
+
+    if (i >= pokemon.length) {
+        i = 0;
+    }
+    showCard(position);
+}
+
+
+function turnLeft(i) {
+    i--;
+
+    if (i < 0) {
+        let length = pokemon.length;
+        i = --length;
+    }
+    showCard(position);
+}
