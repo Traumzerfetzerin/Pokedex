@@ -57,6 +57,7 @@ async function showCard(position) {
     getPokemonName(upperName);
     getType();
     getHabitat(habitat);
+    getFlavorText(flavorText)
 }
 
 
@@ -131,6 +132,13 @@ function getType() {
 // GET HABITAT
 function getHabitat(habitat){
     document.getElementById('habitat').innerHTML += habitat;
+}
+
+
+// GET FLAVOR TEXT
+function getFlavorText(flavorText){
+    document.getElementById('flavorText').innerHTML = flavorText;
+    document.getElementById('flavorText').style.fontWeight = "bold";
 }
 
 
