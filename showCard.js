@@ -51,12 +51,12 @@ async function showCard(position) {
     let flavorText = flavorTextEntry ? flavorTextEntry.flavor_text : 'No flavor text available';
     let upperName = formName();
 
-    getAllFunctions(dreamWorldSprite, color, pokemon, upperName, habitat, flavorText, legacyCry, experience, height)
+    getAllFunctions(dreamWorldSprite, color, pokemon, upperName, habitat, flavorText, legacyCry, experience, height, weight)
 }
 
 
 
-function getAllFunctions(dreamWorldSprite, color, pokemon, upperName, habitat, flavorText, legacyCry, experience, height) {
+function getAllFunctions(dreamWorldSprite, color, pokemon, upperName, habitat, flavorText, legacyCry, experience, height, weight) {
     getPicture(dreamWorldSprite);
     getBackgroundColor(color);
     getPokemonID(pokemon);
@@ -68,6 +68,8 @@ function getAllFunctions(dreamWorldSprite, color, pokemon, upperName, habitat, f
     pokemonAbilities(pokemon);
     getBaseExperience(experience);
     getHeight(height);
+    getWeight(weight);
+    getStats(pokemon);
 }
 
 
@@ -164,18 +166,28 @@ function getBaseExperience(experience) {
 
 // GET HEIGHT
 function getHeight(height) {
-    document.getElementById('baseHeight').innerHTML += `${height/100} m`;
+    document.getElementById('baseHeight').innerHTML = `${height / 100} m`;
 }
 
 
+// GET WEIGHT
+function getWeight(weight) {
+    document.getElementById('baseWeight').innerHTML = `${weight / 100} m`;
+}
 
-function baseStatsText() {
+
+// STATS
+function baseStatsText(pokemon) {
     let baseStatsText = '';
     for (let i = 0; i < pokemon['stats'].length; i++) {
         let stat = pokemon['stats'][i];
         baseStatsText += HTMLbaseStatsText(stat);
     }
     return baseStatsText;
+}
+
+function getStats(pokemon) {
+    document.getElementById('baseStats').innerHTML = baseStatsText(pokemon);
 }
 
 
