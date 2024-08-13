@@ -51,13 +51,20 @@ async function showCard(position) {
     let flavorText = flavorTextEntry ? flavorTextEntry.flavor_text : 'No flavor text available';
     let upperName = formName();
 
+    getAllFunctions(dreamWorldSprite, color, pokemon, upperName, habitat, flavorText, legacyCry)
+}
+
+
+
+function getAllFunctions(dreamWorldSprite, color, pokemon, upperName, habitat, flavorText, legacyCry) {
     getPicture(dreamWorldSprite);
     getBackgroundColor(color);
     getPokemonID(pokemon);
     getPokemonName(upperName);
     getType();
     getHabitat(habitat);
-    getFlavorText(flavorText)
+    getFlavorText(flavorText);
+    getAudio(legacyCry);
 }
 
 
@@ -66,7 +73,6 @@ function getPicture(dreamWorldSprite) {
     let picture = document.createElement('img'); // erzeugt HTML-Element, in dem Fall ein Bild
     picture.src = dreamWorldSprite; // weitere Attribute anpassen wie zB statt src - width
     document.getElementById('bgImg').appendChild(picture); // wo soll es angezeigt werden, was wird angezeigt
-
 }
 
 
@@ -130,15 +136,25 @@ function getType() {
 
 
 // GET HABITAT
-function getHabitat(habitat){
+function getHabitat(habitat) {
     document.getElementById('habitat').innerHTML += habitat;
 }
 
 
 // GET FLAVOR TEXT
-function getFlavorText(flavorText){
+function getFlavorText(flavorText) {
     document.getElementById('flavorText').innerHTML = flavorText;
     document.getElementById('flavorText').style.fontWeight = "bold";
+}
+
+
+// GET AUDIO
+function getAudio(legacyCry) {
+    let pokemonCry = document.createElement('audio'); // erzeugt HTML-Element, in dem Fall eine Audio
+    pokemonCry.controls = 'controls'; // weitere Attribute anpassen wie zB statt src - width
+    pokemonCry.src = legacyCry;
+    pokemonCry.type = 'audio/mpeg';
+    document.getElementById('pokemonAudio').appendChild(pokemonCry); // wo soll es angezeigt werden, was wird angezeigt
 }
 
 
