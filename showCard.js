@@ -14,6 +14,8 @@ let pokemon, species;
 let pokemons = [];
 let typesArray = [];
 let limit;
+let speciesURL;
+let evolution;
 
 
 async function fetchPokeData(position) {
@@ -52,6 +54,7 @@ async function showCard(position) {
     let upperName = formName();
 
     getAllFunctions(dreamWorldSprite, color, pokemon, upperName, habitat, flavorText, legacyCry, experience, height, weight)
+    fetchAndSetEvolution();
 }
 
 
@@ -193,9 +196,30 @@ function getStats(pokemon) {
 }
 
 
+// GET SPECIES-URL
+function getSpeciesURL() {
+    let speciesURL = species['evolution_chain'];
+    return speciesURL;
+}
 
 
+async function fetchEvolution() {
+    let responseSpeciesEvolution = await fetch(getSpeciesURL);
+    let responseSpeciesEvolutionAsJson = await responseSpeciesEvolution.json();
 
+    return {
+        species: responseSpeciesEvolutionAsJson
+    };
+}
+
+
+async function fetchAndSetEvolution() {
+    try {
+        ({ evolution } = fetchEvolution());
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 
 
