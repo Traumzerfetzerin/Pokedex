@@ -19,9 +19,16 @@
 <body onload="showCard('1')">
     <!-- TURN LEFT AND RIGHT -->
     <section id="nav">
-        <div><img onclick="turnLeft(i)" id="switchLeft" src="img/left.png" alt=""></div>
-        <div><img id="exitBigImg" src="img/esc.png" alt=""></div>
-        <div><img onclick="turnRight(i)" id="switchRight" src="img/right.png" alt=""></div>
+        <div><img onclick="turnLeft(i)" id="switchLeft" src="img/left.png" alt="">
+            <div>Back</div>
+        </div>
+        <div><img id="exitBigImg" src="img/esc.png" alt="">
+            <div>Close</div>
+        </div>
+
+        <div><img onclick="turnRight(i)" id="switchRight" src="img/right.png" alt="">
+            <div>Next</div>
+        </div>
     </section>
 
     <section id="contentBig">
@@ -38,8 +45,7 @@
             </div>
             <div id="bgImg"></div>
 
-            <!-- style="background-color: ${color};" src="${dreamWorldSprite}" alt="${formName} Sprite"><br> -->
-
+            <!-- CARD-INFORMATION -->
             <div class="card-body">
                 <p id="flavorText"><b></b></p>
             </div>
@@ -89,7 +95,6 @@
                 </h2>
                 <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                     <div id="baseStats" class="accordion-body">
-                        ${baseStatsText(pokemon)}
                     </div>
                 </div>
             </div>
@@ -103,7 +108,7 @@
                 <div id="flush-collapseThree" class="accordion-collapse collapse"
                     data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
-                        bla bla bla
+                        <div id="test"></div>
                     </div>
                 </div>
             </div>

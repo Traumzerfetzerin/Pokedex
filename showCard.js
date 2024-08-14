@@ -1,13 +1,13 @@
-// ÜBER DIE TASTATUR STEUERN 
-document.addEventListener('keydown', function (event) {
-    if (event.key === 'ArrowLeft') {
-        turnLeft();
-    } else if (event.key === 'ArrowRight') {
-        turnRight();
-    } else if (event.key === 'Escape') {
-        backToScreen();
-    }
-});
+// // ÜBER DIE TASTATUR STEUERN 
+// document.addEventListener('keydown', function (event) {
+//     if (event.key === 'ArrowLeft') {
+//         turnLeft();
+//     } else if (event.key === 'ArrowRight') {
+//         turnRight();
+//     } else if (event.key === 'Escape') {
+//         backToScreen();
+//     }
+// });
 
 
 let pokemon, species;
@@ -53,8 +53,9 @@ async function showCard(position) {
     let flavorText = flavorTextEntry ? flavorTextEntry.flavor_text : 'No flavor text available';
     let upperName = formName();
 
+    fetchEvolution();
+
     getAllFunctions(dreamWorldSprite, color, pokemon, upperName, habitat, flavorText, legacyCry, experience, height, weight)
-    fetchAndSetEvolution();
 }
 
 
@@ -73,6 +74,7 @@ function getAllFunctions(dreamWorldSprite, color, pokemon, upperName, habitat, f
     getHeight(height);
     getWeight(weight);
     getStats(pokemon);
+    testfunction(species);
 }
 
 
@@ -198,56 +200,27 @@ function getStats(pokemon) {
 
 // GET SPECIES-URL
 function getSpeciesURL() {
-    let speciesURL = species['evolution_chain'];
+    speciesURL = species['evolution_chain']['url'];
     return speciesURL;
 }
 
 
 async function fetchEvolution() {
-    let responseSpeciesEvolution = await fetch(getSpeciesURL);
-    let responseSpeciesEvolutionAsJson = await responseSpeciesEvolution.json();
-
-    return {
-        species: responseSpeciesEvolutionAsJson
-    };
-}
-
-
-async function fetchAndSetEvolution() {
     try {
-        ({ evolution } = fetchEvolution());
+        let responseSpeciesEvolution = await fetch(getSpeciesURL());
+        let responseSpeciesEvolutionAsJson = await responseSpeciesEvolution.json();
+        evolution = responseSpeciesEvolutionAsJson
     } catch (error) {
         console.error(error);
     }
 }
 
 
+// GET EVOLUTION
 
 
-
-
-
-
-
-
-
-
-function turnRight(i) {
-    i++;
-
-    if (i >= pokemon.length) {
-        i = 0;
-    }
-    showCard(position);
-}
-
-
-function turnLeft(i) {
-    i--;
-
-    if (i < 0) {
-        let length = pokemon.length;
-        i = --length;
-    }
-    showCard(position);
+function testfunction() {
+    let evolutionChain = getSpeciesURL();
+    let evolutionOne = species['name']
+    document.getElementById('test').innerHTML = evolutionOne;
 }

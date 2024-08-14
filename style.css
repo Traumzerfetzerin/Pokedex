@@ -12,6 +12,18 @@ html {
     src: url('./fonts/static/Teko-Regular.ttf');
 }
 
+td {
+    width: 100%;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* NAVBAR */
 #nav {
     display: flex;
     justify-content: center;
@@ -26,13 +38,8 @@ html {
     cursor: pointer;
 }
 
-#contentBig {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px;
-}
 
+/* CARD-TOP */
 .IDname {
     display: flex;
     justify-content: space-around;
@@ -44,10 +51,13 @@ html {
     height: 30px;
 }
 
-.center {
+
+/* CARD-MIDDLE */
+#contentBig {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 50px;
 }
 
 #bgImg {
@@ -56,14 +66,15 @@ html {
     align-items: center;
 }
 
+
+/* CARD-TEXT */
 .card-body {
     max-width: 300px;
 }
 
+
+/* CARD-INFORMATION */
 #accordionFlushExample {
     width: 300px;
 }
 
-td {
-    width: 100%;
-}
