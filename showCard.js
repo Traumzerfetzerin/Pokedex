@@ -219,24 +219,26 @@ async function fetchEvolution() {
 async function getEvolution() {
     let evolutionOne = evolution.chain.species.name;
     let evolutionTwo = evolution.chain.evolves_to[0].species.name;
-    let evolutionThree = evolution.chain.evolves_to[0].evolves_to[0].species.name;
-    document.getElementById('evolutionImgTemplate').innerHTML += /*HTML*/`
-        <div class="column center"><img src="${pokemon['sprites']['other']['dream_world']['front_default']}" alt="">
-        <div>${formName(evolutionOne)}</div></div>`
-    await fetchAndSetPokeData(evolutionTwo);
+    let evolutionThree = evolution?.chain?.evolves_to[0]?.evolves_to[0]?.species?.name;
+    let evolutionFour = evolution?.chain?.evolves_to[0]?.evolves_to[0]?.evolves_to[0]?.species?.name;
+
+    // ?. füllt variable mit undefined
+
+    generateEvolutionTemplate(evolutionOne);
+    generateEvolutionTemplate(evolutionTwo);
+    generateEvolutionTemplate(evolutionThree);
+    generateEvolutionTemplate(evolutionFour); // TEST
+}
 
 
-    if (evolutionTwo !== undefined) { // !== - verneint
-        document.getElementById('evolutionImgTemplate').innerHTML += /*HTML*/`
-        <div class="column center"><img src="${pokemon['sprites']['other']['dream_world']['front_default']}" alt="">
-        <div>${formName(evolutionTwo)}</div></div>`
-    } await fetchAndSetPokeData(evolutionThree);
-
-    
-    if (evolutionThree !== undefined) { // !== - verneint
-        document.getElementById('evolutionImgTemplate').innerHTML += /*HTML*/`
-        <div class="column center"><img src="${pokemon['sprites']['other']['dream_world']['front_default']}" alt="">
-        <div>${formName(evolutionThree)}</div></div>`
+async function generateEvolutionTemplate(evolutionChain) {
+    if (evolutionChain !== undefined) { // !== prüft, ob die übergebene Variable undefined ist, ansonsten passiert nichts
+        await fetchAndSetPokeData(evolutionChain); // neue Daten werden geholt
+        document.getElementById('evolutionImgTemplate').innerHTML += /*HTML*/ `
+            <div>
+                <img src="${pokemon['sprites']['other']['dream_world']['front_default']}" alt="">
+                <div class="center">${formName(evolutionChain)}</div>
+            </div>`;
     }
-} 
+}
 
