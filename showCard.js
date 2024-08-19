@@ -53,7 +53,7 @@ async function showCard(position) {
     let flavorText = flavorTextEntry ? flavorTextEntry.flavor_text : 'No flavor text available';
     let upperName = formName();
 
-    fetchEvolution();
+    await fetchEvolution();
 
     getAllFunctions(dreamWorldSprite, color, pokemon, upperName, habitat, flavorText, legacyCry, experience, height, weight)
 }
@@ -74,7 +74,7 @@ function getAllFunctions(dreamWorldSprite, color, pokemon, upperName, habitat, f
     getHeight(height);
     getWeight(weight);
     getStats(pokemon);
-    testfunction(species);
+    getEvolution(species);
 }
 
 
@@ -217,10 +217,27 @@ async function fetchEvolution() {
 
 
 // GET EVOLUTION
+async function getEvolution() {
+    let evolutionOne = evolution.chain.species.name;
+    let evolutionTwo = evolution.chain.evolves_to[0].species.name;
+    let evolutionThree = evolution.chain.evolves_to[0].evolves_to[0].species.name;
+    document.getElementById('evolutionImgTemplate').innerHTML += /*HTML*/`
+        <img src="${pokemon['sprites']['other']['dream_world']['front_default']}" alt="">
+        <div>${evolutionOne}</div>`
+    await fetchAndSetPokeData(evolutionTwo);
 
 
-function testfunction() {
-    let evolutionChain = getSpeciesURL();
-    let evolutionOne = species['name']
-    document.getElementById('test').innerHTML = evolutionOne;
+    if (evolutionTwo !== undefined) { // !== - verneint
+        document.getElementById('evolutionImgTemplate').innerHTML += /*HTML*/`
+        <img src="${pokemon['sprites']['other']['dream_world']['front_default']}" alt="">
+        <div>${evolutionTwo}</div>`
+    } await fetchAndSetPokeData(evolutionThree);
+
+    if (evolutionThree !== undefined) { // !== - verneint
+        document.getElementById('evolutionImgTemplate').innerHTML += /*HTML*/`
+        <img src="${pokemon['sprites']['other']['dream_world']['front_default']}" alt="">
+        <div>${evolutionThree}</div>`
+    }
+
 }
+
