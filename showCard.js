@@ -237,6 +237,7 @@ async function generateEvolutionTemplate(evolutionChain) {
         document.getElementById('evolutionImgTemplate').innerHTML += /*HTML*/ `
             <div>
                 <img src="${pokemon['sprites']['other']['dream_world']['front_default']}" alt="">
+                <div class="center"><b>#${pokemon.id}</b></div>
                 <div class="center">${formName(evolutionChain)}</div>
             </div>`;
     }
