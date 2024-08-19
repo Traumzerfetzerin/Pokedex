@@ -51,7 +51,7 @@ async function showCard(position) {
     let habitat = species['habitat']['name'];
     let flavorTextEntry = species['flavor_text_entries'].find(entry => entry.language.name === 'en' && entry.version.name === 'heartgold');
     let flavorText = flavorTextEntry ? flavorTextEntry.flavor_text : 'No flavor text available';
-    let upperName = formName();
+    let upperName = formName(pokemon['forms'][0]['name']);
 
     await fetchEvolution();
 
@@ -92,8 +92,7 @@ function getPokemonName(upperName) {
 
 
 // FIRST LETTER LARGE (charAt extrahiert erstes Zeichen der Zeichenkette)
-function formName() {
-    let formName = pokemon['forms'][0]['name'];
+function formName(formName) {
     return formName.charAt(0).toUpperCase() + formName.slice(1);
 }
 
@@ -222,22 +221,22 @@ async function getEvolution() {
     let evolutionTwo = evolution.chain.evolves_to[0].species.name;
     let evolutionThree = evolution.chain.evolves_to[0].evolves_to[0].species.name;
     document.getElementById('evolutionImgTemplate').innerHTML += /*HTML*/`
-        <img src="${pokemon['sprites']['other']['dream_world']['front_default']}" alt="">
-        <div>${evolutionOne}</div>`
+        <div class="column center"><img src="${pokemon['sprites']['other']['dream_world']['front_default']}" alt="">
+        <div>${formName(evolutionOne)}</div></div>`
     await fetchAndSetPokeData(evolutionTwo);
 
 
     if (evolutionTwo !== undefined) { // !== - verneint
         document.getElementById('evolutionImgTemplate').innerHTML += /*HTML*/`
-        <img src="${pokemon['sprites']['other']['dream_world']['front_default']}" alt="">
-        <div>${evolutionTwo}</div>`
+        <div class="column center"><img src="${pokemon['sprites']['other']['dream_world']['front_default']}" alt="">
+        <div>${formName(evolutionTwo)}</div></div>`
     } await fetchAndSetPokeData(evolutionThree);
 
+    
     if (evolutionThree !== undefined) { // !== - verneint
         document.getElementById('evolutionImgTemplate').innerHTML += /*HTML*/`
-        <img src="${pokemon['sprites']['other']['dream_world']['front_default']}" alt="">
-        <div>${evolutionThree}</div>`
+        <div class="column center"><img src="${pokemon['sprites']['other']['dream_world']['front_default']}" alt="">
+        <div>${formName(evolutionThree)}</div></div>`
     }
-
-}
+} 
 

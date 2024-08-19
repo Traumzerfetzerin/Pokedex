@@ -22,6 +22,11 @@ td {
     align-items: center;
 }
 
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
 
 /* NAVBAR */
 #nav {
@@ -78,3 +83,14 @@ td {
     width: 300px;
 }
 
+
+/* EVOLUTION */
+#evolutionImgTemplate {
+    display: flex;
+    justify-content: space-between;
+}
+
+#evolutionImgTemplate img {
+    width: 80px;
+    height: 80px;
+}
