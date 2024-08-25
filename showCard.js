@@ -288,3 +288,4 @@ function turnLeft() {
     lastPokemon--;
     showCard(lastPokemon);
 }
+
