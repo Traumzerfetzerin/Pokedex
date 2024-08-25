@@ -235,7 +235,7 @@ async function generateEvolutionTemplate(evolutionChain) {
     if (evolutionChain !== undefined) { // !== prüft, ob die übergebene Variable undefined ist, ansonsten passiert nichts
         await fetchAndSetPokeData(evolutionChain); // neue Daten werden geholt
         document.getElementById('evolutionImgTemplate').innerHTML += /*HTML*/ `
-            <div>
+            <div class="pointer">
                 <img src="${pokemon['sprites']['other']['dream_world']['front_default']}" alt="">
                 <div class="center"><b>#${pokemon.id}</b></div>
                 <div class="center">${formName(evolutionChain)}</div>

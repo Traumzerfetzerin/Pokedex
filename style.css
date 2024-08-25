@@ -27,6 +27,10 @@ td {
     flex-direction: column;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 
 /* NAVBAR */
 #nav {
