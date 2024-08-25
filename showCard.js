@@ -16,6 +16,8 @@ let typesArray = [];
 let limit;
 let speciesURL;
 let evolution;
+let nextPokemon;
+let lastPokemon;
 
 
 async function fetchPokeData(position) {
@@ -41,11 +43,13 @@ async function fetchAndSetPokeData(position) {
 
 
 async function showCard(position) {
+    document.getElementById('loadingBackground').style.display = "inline";
     await fetchAndSetPokeData(position);
+    document.getElementById('loadingBackground').style.display = "none";
     let experience = pokemon['base_experience'];
     let height = pokemon['height'];
     let weight = pokemon['weight'];
-    let dreamWorldSprite = pokemon['sprites']['other']['dream_world']['front_default'];
+    let dreamWorldSprite = changePicture();
     let legacyCry = pokemon['cries']['legacy'];
     let color = species['color']['name'];
     let habitat = species['habitat']['name'];
@@ -80,7 +84,7 @@ function getAllFunctions(dreamWorldSprite, color, pokemon, upperName, habitat, f
 
 // GET ID
 function getPokemonID(pokemon) {
-    document.getElementById('IDpokemon').innerHTML += pokemon.id;
+    document.getElementById('IDpokemon').innerHTML = /*HTML*/`# ${pokemon.id}`;
     document.getElementById('IDpokemon').style.fontWeight = "bold";
 }
 
@@ -99,6 +103,7 @@ function formName(formName) {
 
 // GET TYPES
 function getType() {
+    document.getElementById('typ').innerHTML = '';
     for (let i = 0; i < pokemon['types'].length; i++) {
         let type = HTMLtype(i);
         document.getElementById('typ').innerHTML += type;
@@ -108,15 +113,29 @@ function getType() {
 
 // GET HABITAT
 function getHabitat(habitat) {
-    document.getElementById('habitat').innerHTML += habitat;
+    document.getElementById('habitat').innerHTML = habitat;
 }
 
 
 // GET PICTURE
 function getPicture(dreamWorldSprite) {
-    let picture = document.createElement('img'); // erzeugt HTML-Element, in dem Fall ein Bild
-    picture.src = dreamWorldSprite; // weitere Attribute anpassen wie zB statt src - width
-    document.getElementById('bgImg').appendChild(picture); // wo soll es angezeigt werden, was wird angezeigt
+    if (document.getElementById('bgImg').contains(document.getElementById('pokemonPicture'))) {
+        document.getElementById('pokemonPicture').src = dreamWorldSprite;
+    } else {
+        let picture = document.createElement('img'); // erzeugt HTML-Element, in dem Fall ein Bild
+        picture.src = dreamWorldSprite; // weitere Attribute anpassen wie zB statt src - width
+        picture.id = 'pokemonPicture';
+        document.getElementById('bgImg').appendChild(picture); // wo soll es angezeigt werden, was wird angezeigt
+    }
+}
+
+
+// CHANGE PICUTRE
+function changePicture() {
+    let otherPicture = pokemon?.sprites?.other?.dream_world?.front_default;
+    if (!otherPicture) {
+        otherPicture = pokemon?.sprites?.other?.home?.front_default;
+    } return otherPicture;
 }
 
 
@@ -135,11 +154,16 @@ function getFlavorText(flavorText) {
 
 // GET AUDIO
 function getAudio(legacyCry) {
-    let pokemonCry = document.createElement('audio'); // erzeugt HTML-Element, in dem Fall eine Audio
-    pokemonCry.controls = 'controls'; // weitere Attribute anpassen wie zB statt src - width
-    pokemonCry.src = legacyCry;
-    pokemonCry.type = 'audio/mpeg';
-    document.getElementById('pokemonAudio').appendChild(pokemonCry); // wo soll es angezeigt werden, was wird angezeigt
+    if (document.getElementById('pokemonAudio').contains(document.getElementById('pokemonCryID'))) {
+        document.getElementById('pokemonCryID').src = legacyCry;
+    } else {
+        let pokemonCry = document.createElement('audio'); // erzeugt HTML-Element, in dem Fall eine Audio
+        pokemonCry.controls = 'controls'; // weitere Attribute anpassen wie zB statt src - width
+        pokemonCry.src = legacyCry;
+        pokemonCry.type = 'audio/mpeg';
+        pokemonCry.id = 'pokemonCryID';
+        document.getElementById('pokemonAudio').appendChild(pokemonCry); // wo soll es angezeigt werden, was wird angezeigt
+    }
 }
 
 
@@ -217,6 +241,7 @@ async function fetchEvolution() {
 
 // GET EVOLUTION
 async function getEvolution() {
+    document.getElementById('evolutionImgTemplate').innerHTML = '';
     let evolutionOne = evolution.chain.species.name;
     let evolutionTwo = evolution.chain.evolves_to[0].species.name;
     let evolutionThree = evolution?.chain?.evolves_to[0]?.evolves_to[0]?.species?.name;
@@ -236,10 +261,30 @@ async function generateEvolutionTemplate(evolutionChain) {
         await fetchAndSetPokeData(evolutionChain); // neue Daten werden geholt
         document.getElementById('evolutionImgTemplate').innerHTML += /*HTML*/ `
             <div class="pointer">
-                <img src="${pokemon['sprites']['other']['dream_world']['front_default']}" alt="">
+                <img src="${changePicture()}" alt="">
                 <div class="center"><b>#${pokemon.id}</b></div>
                 <div class="center">${formName(evolutionChain)}</div>
             </div>`;
     }
 }
 
+
+function getCurrentPokemonID() {
+    let currentPokemonID = document.getElementById('IDpokemon').innerHTML;
+    currentPokemonID = currentPokemonID.substring(2);
+    return parseInt(currentPokemonID);
+}
+
+
+function turnRight() {
+    nextPokemon = getCurrentPokemonID();
+    nextPokemon++;
+    showCard(nextPokemon);
+}
+
+
+function turnLeft() {
+    lastPokemon = getCurrentPokemonID();
+    lastPokemon--;
+    showCard(lastPokemon);
+}

@@ -16,17 +16,24 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
-<body onload="showCard('25')">
+<body id="body" onload="showCard('60')">
+
+    <div id="loadingBackground">
+        <div id="loadingScreen" class="spinner-border center" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
     <!-- TURN LEFT AND RIGHT -->
     <section id="nav">
-        <div><img onclick="turnLeft(i)" id="switchLeft" src="img/left.png" alt="">
+        <div><img onclick="turnLeft()" id="switchLeft" src="img/left.png" alt="">
             <div class="pointer">Back</div>
         </div>
         <div><img id="exitBigImg" src="img/esc.png" alt="">
             <div class="pointer">Close</div>
         </div>
 
-        <div><img onclick="turnRight(i)" id="switchRight" src="img/right.png" alt="">
+        <div><img onclick="turnRight()" id="switchRight" src="img/right.png" alt="">
             <div class="pointer">Next</div>
         </div>
     </section>
@@ -34,7 +41,7 @@
     <section id="contentBig">
         <div class="card">
             <div class="IDname">
-                <div id="IDpokemon"># </div>
+                <div id="IDpokemon"></div>
                 <div id="pokemonName"></div><br>
                 <div>
                     <div id="typ"></div>
