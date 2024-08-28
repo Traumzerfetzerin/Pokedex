@@ -52,7 +52,7 @@ async function showCard(position) {
     let dreamWorldSprite = changePicture();
     let legacyCry = pokemon['cries']['legacy'];
     let color = species['color']['name'];
-    let habitat = species['habitat']['name'];
+    let habitat = changeHabitat();
     let flavorTextEntry = species['flavor_text_entries'].find(entry => entry.language.name === 'en' && entry.version.name === 'heartgold');
     let flavorText = flavorTextEntry ? flavorTextEntry.flavor_text : 'No flavor text available';
     let upperName = formName(pokemon['forms'][0]['name']);
@@ -114,6 +114,15 @@ function getType() {
 // GET HABITAT
 function getHabitat(habitat) {
     document.getElementById('habitat').innerHTML = habitat;
+}
+
+
+// CHANGE HABITAT
+function changeHabitat() {
+    let findHabitat = species?.habitat?.name;
+    if (!findHabitat) {
+        findHabitat = '';
+    } return findHabitat
 }
 
 
@@ -269,6 +278,7 @@ async function generateEvolutionTemplate(evolutionChain) {
 }
 
 
+// TURN RIGHT AND LEFT
 function getCurrentPokemonID() {
     let currentPokemonID = document.getElementById('IDpokemon').innerHTML;
     currentPokemonID = currentPokemonID.substring(2);
@@ -277,15 +287,21 @@ function getCurrentPokemonID() {
 
 
 function turnRight() {
-    nextPokemon = getCurrentPokemonID();
     nextPokemon++;
+
+    if (nextPokemon >= pokemon.lenght) {
+        nextPokemon = getCurrentPokemonID();
+    }
     showCard(nextPokemon);
 }
 
 
+
 function turnLeft() {
-    lastPokemon = getCurrentPokemonID();
     lastPokemon--;
+
+    if (lastPokemon >= pokemon.lenght) {
+        lastPokemon = getCurrentPokemonID();
+    }
     showCard(lastPokemon);
 }
-

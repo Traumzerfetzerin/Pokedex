@@ -31,13 +31,16 @@ td {
     cursor: pointer;
 }
 
+
 #loadingBackground {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: black;
+    /* background-color: rgba(0, 0, 0, 0.1); */
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     position: absolute;
+    z-index: 10;
 }
 
 #loadingScreen {
