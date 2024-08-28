@@ -50,7 +50,7 @@ async function showCard(position) {
     let height = pokemon['height'];
     let weight = pokemon['weight'];
     let dreamWorldSprite = changePicture();
-    let legacyCry = pokemon['cries']['legacy'];
+    let legacyCry = changeAudio();
     let color = species['color']['name'];
     let habitat = changeHabitat();
     let flavorTextEntry = species['flavor_text_entries'].find(entry => entry.language.name === 'en' && entry.version.name === 'heartgold');
@@ -176,6 +176,15 @@ function getAudio(legacyCry) {
 }
 
 
+// CHANGE AUDIO
+function changeAudio() {
+    let otherAudio = pokemon?.cries?.legacy;
+    if (!otherAudio) {
+        otherAudio = pokemon?.cries?.latest;
+    } return otherAudio;
+}
+
+
 // BASICS
 function abilitiesText(pokemon) {
     let abilitiesText = '';
@@ -287,21 +296,14 @@ function getCurrentPokemonID() {
 
 
 function turnRight() {
+    nextPokemon = getCurrentPokemonID();
     nextPokemon++;
-
-    if (nextPokemon >= pokemon.lenght) {
-        nextPokemon = getCurrentPokemonID();
-    }
     showCard(nextPokemon);
 }
 
 
-
 function turnLeft() {
+    lastPokemon = getCurrentPokemonID();
     lastPokemon--;
-
-    if (lastPokemon >= pokemon.lenght) {
-        lastPokemon = getCurrentPokemonID();
-    }
     showCard(lastPokemon);
 }
