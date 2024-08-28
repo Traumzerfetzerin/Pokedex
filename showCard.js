@@ -311,9 +311,13 @@ function getCurrentPokemonID() {
 }
 
 
-function turnRight() {
-    nextPokemon = getCurrentPokemonID();
-    nextPokemon++;
+async function turnRight() {
+    let nextPokemon = getCurrentPokemonID();
+    if (nextPokemon >= await generateLastOne()) {
+        nextPokemon = 1;
+    } else {
+        nextPokemon++;
+    }
     showCard(nextPokemon);
 }
 
@@ -322,7 +326,8 @@ async function turnLeft() {
     let lastPokemon = getCurrentPokemonID();
     if (lastPokemon <= 1) {
         lastPokemon = await generateLastOne()
-    } else { lastPokemon-- }
-
+    } else {
+        lastPokemon--;
+    }
     showCard(lastPokemon);
 }
