@@ -220,13 +220,13 @@ function getBaseExperience(experience) {
 
 // GET HEIGHT
 function getHeight(height) {
-    document.getElementById('baseHeight').innerHTML = `${height / 100} m`;
+    document.getElementById('baseHeight').innerHTML = `${height / 10} m`;
 }
 
 
 // GET WEIGHT
 function getWeight(weight) {
-    document.getElementById('baseWeight').innerHTML = `${weight / 100} m`;
+    document.getElementById('baseWeight').innerHTML = `${weight / 10} kg`;
 }
 
 
@@ -286,7 +286,7 @@ async function generateEvolutionTemplate(evolutionChain) {
     if (evolutionChain !== undefined) { // !== prüft, ob die übergebene Variable undefined ist, ansonsten passiert nichts
         await fetchAndSetPokeData(evolutionChain); // neue Daten werden geholt
         document.getElementById('evolutionImgTemplate').innerHTML += /*HTML*/ `
-            <div class="pointer">
+            <div class="pointer" onclick="showCard(${pokemon.id})">
                 <img src="${changePicture()}" alt="">
                 <div class="center"><b>#${pokemon.id}</b></div>
                 <div class="center">${formName(evolutionChain)}</div>
