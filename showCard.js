@@ -53,7 +53,7 @@ async function showCard(position) {
     let legacyCry = changeAudio();
     let color = species['color']['name'];
     let habitat = changeHabitat();
-    let flavorTextEntry = species['flavor_text_entries'].find(entry => entry.language.name === 'en' && entry.version.name === 'heartgold');
+    let flavorTextEntry = changeFlavorText();
     let flavorText = flavorTextEntry ? flavorTextEntry.flavor_text : 'No flavor text available';
     let upperName = formName(pokemon['forms'][0]['name']);
 
@@ -161,6 +161,14 @@ function getFlavorText(flavorText) {
 }
 
 
+// CHANGE FLAVOR TEXT
+function changeFlavorText() {
+    let otherText = species?.flavor_text_entries?.find(entry => entry.language.name === 'en' && entry.version.name === 'heartgold');
+    if (!otherText) {
+        otherText = species?.flavor_text_entries?.find(entry => entry.language.name === 'en' && entry.version.name === 'scarlet');
+    } return otherText;
+}
+
 // GET AUDIO
 function getAudio(legacyCry) {
     if (document.getElementById('pokemonAudio').contains(document.getElementById('pokemonCryID'))) {
@@ -267,10 +275,10 @@ async function getEvolution() {
 
     // ?. füllt variable mit undefined
 
-    generateEvolutionTemplate(evolutionOne);
-    generateEvolutionTemplate(evolutionTwo);
-    generateEvolutionTemplate(evolutionThree);
-    generateEvolutionTemplate(evolutionFour); // TEST
+    await generateEvolutionTemplate(evolutionOne);
+    await generateEvolutionTemplate(evolutionTwo);
+    await generateEvolutionTemplate(evolutionThree);
+    await generateEvolutionTemplate(evolutionFour); // TEST
 }
 
 
