@@ -121,7 +121,7 @@ function getHabitat(habitat) {
 function changeHabitat() {
     let findHabitat = species?.habitat?.name;
     if (!findHabitat) {
-        findHabitat = '';
+        findHabitat = 'No habitat available';
     } return findHabitat
 }
 
@@ -260,8 +260,8 @@ async function fetchEvolution() {
 // GET EVOLUTION
 async function getEvolution() {
     document.getElementById('evolutionImgTemplate').innerHTML = '';
-    let evolutionOne = evolution.chain.species.name;
-    let evolutionTwo = evolution.chain.evolves_to[0].species.name;
+    let evolutionOne = evolution?.chain?.species?.name;
+    let evolutionTwo = evolution?.chain?.evolves_to[0]?.species.name;
     let evolutionThree = evolution?.chain?.evolves_to[0]?.evolves_to[0]?.species?.name;
     let evolutionFour = evolution?.chain?.evolves_to[0]?.evolves_to[0]?.evolves_to[0]?.species?.name;
 
