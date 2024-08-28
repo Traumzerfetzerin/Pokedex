@@ -295,6 +295,14 @@ async function generateEvolutionTemplate(evolutionChain) {
 }
 
 
+// GET LAST ONE
+async function generateLastOne() {
+    let lastOne = await fetch(`https://pokeapi.co/api/v2/pokemon/`);
+    lastOne = await lastOne.json();
+    lastOne = lastOne.count - 277;
+    return lastOne;
+}
+
 // TURN RIGHT AND LEFT
 function getCurrentPokemonID() {
     let currentPokemonID = document.getElementById('IDpokemon').innerHTML;
@@ -310,11 +318,11 @@ function turnRight() {
 }
 
 
-function turnLeft() {
-    lastPokemon = getCurrentPokemonID();
-    if (lastPokemon < 0) {
+async function turnLeft() {
+    let lastPokemon = getCurrentPokemonID();
+    if (lastPokemon <= 1) {
+        lastPokemon = await generateLastOne()
+    } else { lastPokemon-- }
 
-        lastPokemon--;
-    }
     showCard(lastPokemon);
 }
