@@ -49,30 +49,27 @@ async function showCard(position) {
     let experience = pokemon['base_experience'];
     let height = pokemon['height'];
     let weight = pokemon['weight'];
-    let dreamWorldSprite = changePicture();
-    let legacyCry = changeAudio();
     let color = species['color']['name'];
-    let habitat = changeHabitat();
     let flavorTextEntry = changeFlavorText();
     let flavorText = flavorTextEntry ? flavorTextEntry.flavor_text : 'No flavor text available';
     let upperName = formName(pokemon['forms'][0]['name']);
 
     await fetchEvolution();
 
-    getAllFunctions(dreamWorldSprite, color, pokemon, upperName, habitat, flavorText, legacyCry, experience, height, weight)
+    getAllFunctions(color, pokemon, upperName, flavorText, experience, height, weight)
 }
 
 
 // GET ALL FUNCTIONS
-function getAllFunctions(dreamWorldSprite, color, pokemon, upperName, habitat, flavorText, legacyCry, experience, height, weight) {
-    getPicture(dreamWorldSprite);
+function getAllFunctions(color, pokemon, upperName, flavorText, experience, height, weight) {
+    getPicture();
     getBackgroundColor(color);
     getPokemonID(pokemon);
     getPokemonName(upperName);
     getType();
-    getHabitat(habitat);
+    getHabitat();
     getFlavorText(flavorText);
-    getAudio(legacyCry);
+    getAudio();
     pokemonAbilities(pokemon);
     getBaseExperience(experience);
     getHeight(height);
@@ -112,8 +109,8 @@ function getType() {
 
 
 // GET HABITAT
-function getHabitat(habitat) {
-    document.getElementById('habitat').innerHTML = habitat;
+function getHabitat() {
+    document.getElementById('habitat').innerHTML = changeHabitat();
 }
 
 
@@ -127,12 +124,12 @@ function changeHabitat() {
 
 
 // GET PICTURE
-function getPicture(dreamWorldSprite) {
+function getPicture() {
     if (document.getElementById('bgImg').contains(document.getElementById('pokemonPicture'))) {
-        document.getElementById('pokemonPicture').src = dreamWorldSprite;
+        document.getElementById('pokemonPicture').src = changePicture();
     } else {
         let picture = document.createElement('img'); // erzeugt HTML-Element, in dem Fall ein Bild
-        picture.src = dreamWorldSprite; // weitere Attribute anpassen wie zB statt src - width
+        picture.src = changePicture(); // weitere Attribute anpassen wie zB statt src - width
         picture.id = 'pokemonPicture';
         document.getElementById('bgImg').appendChild(picture); // wo soll es angezeigt werden, was wird angezeigt
     }
@@ -170,13 +167,13 @@ function changeFlavorText() {
 }
 
 // GET AUDIO
-function getAudio(legacyCry) {
+function getAudio() {
     if (document.getElementById('pokemonAudio').contains(document.getElementById('pokemonCryID'))) {
-        document.getElementById('pokemonCryID').src = legacyCry;
+        document.getElementById('pokemonCryID').src = changeAudio();
     } else {
         let pokemonCry = document.createElement('audio'); // erzeugt HTML-Element, in dem Fall eine Audio
         pokemonCry.controls = 'controls'; // weitere Attribute anpassen wie zB statt src - width
-        pokemonCry.src = legacyCry;
+        pokemonCry.src = changeAudio();
         pokemonCry.type = 'audio/mpeg';
         pokemonCry.id = 'pokemonCryID';
         document.getElementById('pokemonAudio').appendChild(pokemonCry); // wo soll es angezeigt werden, was wird angezeigt

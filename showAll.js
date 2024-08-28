@@ -24,6 +24,7 @@ async function render(limit) {
                 <b>#${i + 1} ${element['name']}</b><br>
                 </div>
                 <br>
+                <img src="${getPicture()}" alt="">
             `;
         }
         limit += 5;
