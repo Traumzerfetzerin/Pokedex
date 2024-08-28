@@ -16,29 +16,31 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
-<body id="body" onload="showCard('1')">
+<body id="body" onload="render('10')">
 
     <div id="loadingBackground">
-        <div id="loadingScreen" class="center" role="status">
+        <div id="loadingScreen" class="center inline" role="status">
             <img class="spinner-border center" src="img/fav.png" alt="">
         </div>
     </div>
 
-    <!-- TURN LEFT AND RIGHT -->
-    <section id="nav">
-        <div><img onclick="turnLeft()" id="switchLeft" src="img/left.png" alt="">
-            <div class="pointer">Back</div>
-        </div>
-        <div><img id="exitBigImg" src="img/esc.png" alt="">
-            <div class="pointer">Close</div>
-        </div>
+    <section id="contentBig" class="d-none">
 
-        <div><img onclick="turnRight()" id="switchRight" src="img/right.png" alt="">
-            <div class="pointer">Next</div>
-        </div>
-    </section>
+        <!-- NAVIGATION -->
+        <section id="nav">
+            <div><img onclick="turnLeft()" id="switchLeft" src="img/left.png" alt="">
+                <div class="pointer">Back</div>
+            </div>
+            <div><img id="exitBigImg" src="img/esc.png" alt="">
+                <div class="pointer">Close</div>
+            </div>
 
-    <section id="contentBig">
+            <div><img onclick="turnRight()" id="switchRight" src="img/right.png" alt="">
+                <div class="pointer">Next</div>
+            </div>
+        </section>
+
+        <div class="flex">
         <div class="card">
             <div class="IDname">
                 <div id="IDpokemon"></div>
@@ -119,8 +121,10 @@
                         <div id="evolutionImgTemplate"></div>
                     </div>
                 </div>
-            </div>
+            </div></div>
     </section>
+
+    <section id="content"></section>
 
 </body>
 

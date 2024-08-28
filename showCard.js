@@ -179,7 +179,7 @@ function getAudio(legacyCry) {
         pokemonCry.src = legacyCry;
         pokemonCry.type = 'audio/mpeg';
         pokemonCry.id = 'pokemonCryID';
-        document.getElementById('pokemonAudio').appendChild(pokemonCry).play(); // wo soll es angezeigt werden, was wird angezeigt
+        document.getElementById('pokemonAudio').appendChild(pokemonCry); // wo soll es angezeigt werden, was wird angezeigt
     }
 }
 

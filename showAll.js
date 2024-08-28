@@ -15,7 +15,7 @@ async function render(limit) {
     try {
         pokemons = await fetchDataJson(limit);
         document.getElementById('content').innerHTML = ``;
-
+        document.getElementById('loadingBackground').style.display = "none";
         for (let i = 0; i < pokemons['results'].length; i++) {
             const element = pokemons['results'][i];
             console.log(element);
