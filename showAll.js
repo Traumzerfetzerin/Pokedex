@@ -20,9 +20,10 @@ async function render(limit) {
 
             document.getElementById('content').innerHTML += /*HTML*/ `
                 <div class="card pointer cardAllPokemons" style="width: 18rem;" onclick="showCard(${pokemon.id})">
-                   <div class="flex">
-                <b>#${i + 1} ${element['name']}</b>
-                    <div class="typeAll" id="typeAll${i}"></div></div> 
+                    <div class="flex">
+                        <b>#${i + 1} ${formName(element['name'])}</b>
+                        <div class="typeAll" id="typeAll${i}"></div>
+                    </div>
                     <img class="imgAllPokemons" src="${changePicture()}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <p class="card-text">${changeFlavorText()}</p>

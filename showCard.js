@@ -304,6 +304,7 @@ async function generateLastOne() {
     return lastOne;
 }
 
+
 // TURN RIGHT AND LEFT
 function getCurrentPokemonID() {
     let currentPokemonID = document.getElementById('IDpokemon').innerHTML;
