@@ -8,7 +8,7 @@ section#content {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 50px;
 }
 
 .cardAllPokemons {
@@ -26,6 +26,12 @@ section#content {
     left: 0;
     right: 0;
     bottom: 0;
-    position: absolute;
+    position: sticky;
     z-index: 10;
+    height: 100vh;
+}
+
+.typeAll img {
+    width: 50px;
+    height: 50px;
 }

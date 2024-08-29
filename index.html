@@ -20,7 +20,7 @@
 
 <body id="body" onload="render('20')">
 
-    <header>
+    <header class="center">
         <img src="img/logo.svg" alt="">
         <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
@@ -32,9 +32,13 @@
         </nav>
     </header>
 
-    <section id="content"></section>
 
-    <div id="dialogBackground" class="d-none"></div>
+    <section id="content" class="center"></section>
+    <div class="center" style="padding-top: 50px;">
+        <button type="button" class="btn btn-secondary btn-lg">Load more</button>
+    </div>
+
+    <div id="dialogBackground" class="d-none" onclick="closeCard()">test</div>
 
     <div id="loadingBackground">
         <div id="loadingScreen" class="center inline" role="status">

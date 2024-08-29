@@ -29,6 +29,7 @@
 
 .cardBackground {
     background-color: #FFB6C0;
+    border-radius: 20px;
 }
 
 /* CARD-MIDDLE */
@@ -37,14 +38,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
+    /* margin-top: 50px; */
+    position: fixed;
     top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: absolute;
-    z-index: 11;
-   
+    left: 50px;
+    right: 50px;
+    bottom: 50px;
+    z-index: 10;
 }
 
 #bgImg {

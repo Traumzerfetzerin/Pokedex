@@ -69,7 +69,7 @@ function getAllFunctions(color, pokemon, upperName, flavorText, experience, heig
     getBackgroundColor(color);
     getPokemonID(pokemon);
     getPokemonName(upperName);
-    getType();
+    getType('typ');
     getHabitat();
     getFlavorText(flavorText);
     getAudio();
@@ -102,11 +102,11 @@ function formName(formName) {
 
 
 // GET TYPES
-function getType() {
-    document.getElementById('typ').innerHTML = '';
+function getType(typID) {
+    document.getElementById(typID).innerHTML = '';
     for (let i = 0; i < pokemon['types'].length; i++) {
         let type = HTMLtype(i);
-        document.getElementById('typ').innerHTML += type;
+        document.getElementById(typID).innerHTML += type;
     }
 }
 
