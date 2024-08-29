@@ -26,10 +26,15 @@
     height: 30px;
 }
 
+.card {
+    width: 500px;
+    height: auto;
+}
 
 .cardBackground {
     background-color: #FFB6C0;
     border-radius: 20px;
+    padding: 10px;
 }
 
 /* CARD-MIDDLE */
@@ -51,6 +56,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#bgImg img {
+    width: 100%;
 }
 
 

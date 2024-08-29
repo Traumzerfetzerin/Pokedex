@@ -6,6 +6,11 @@ body {
 header {
     display: flex;
     padding-bottom: 50px;
+    padding-top: 50px;
+}
+
+header img {
+    padding-bottom: 50px;
 }
 
 * {
