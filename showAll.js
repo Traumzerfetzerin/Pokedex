@@ -19,12 +19,12 @@ async function render(limit) {
             await fetchAndSetPokeData(i + 1);
 
             document.getElementById('content').innerHTML += /*HTML*/ `
-                <div class="card pointer cardAllPokemons center" style="width: 18rem;"
+                <div class="card pointer cardAllPokemons center" style="width: 18rem; background-color:${species['color']['name']}"
                     onclick="showCard(${pokemon.id})">
                     <div class="flex">
-                        <b>#${i + 1} ${formName(element['name'])}</b>
+                        <h1><b>#${i + 1}</b> ${formName(element['name'])}</h1>
                     </div>
-                    <div><img class="imgAllPokemons" src="${changePicture()}" class="card-img-top" alt="..." style="background-color:${species['color']['name']}"></div>
+                    <div class="bgAllPokemons"><img class="imgAllPokemons" src="${changePicture()}" class="card-img-top" alt="..."></div>
                     <div class="typeAll" id="typeAll${i}"></div>
                 </div>`;
             getType(`typeAll${i}`);

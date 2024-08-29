@@ -13,6 +13,7 @@ section#content {
 
 .cardAllPokemons {
     height: 300px !important;
+    justify-content: space-evenly;
 }
 
 .imgAllPokemons {
@@ -34,4 +35,21 @@ section#content {
 .typeAll img {
     width: 50px;
     height: 50px;
+}
+
+.imgAllPokemons:hover {
+    transform: scale(1.2);
+    /* Vergrößerung um 20% beim Hover */
+    transition: transform 4s ease-out;
+    /* Animation für den Hover-Effekt */
+    transition-behavior: normal;
+    transition-duration: 0.5s;
+    transition-delay: 0s;
+    transition-property: transform;
+}
+
+.imgAllPokemons:not(:hover) {
+    transform: scale(1);
+    /* Rückkehr zur normalen Größe, wenn der Cursor das Bild verlässt */
+    transition: transform 0.5s ease-out;
 }
