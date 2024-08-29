@@ -1,0 +1,78 @@
+/* NAVBAR */
+#nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+    gap: 100px;
+}
+
+#nav img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+
+/* CARD-TOP */
+.IDname {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#typ img {
+    width: 30px;
+    height: 30px;
+}
+
+
+.cardBackground {
+    background-color: #FFB6C0;
+}
+
+/* CARD-MIDDLE */
+#contentBig {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: 11;
+   
+}
+
+#bgImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* CARD-TEXT */
+.card-body {
+    max-width: 300px;
+}
+
+
+/* CARD-INFORMATION */
+#accordionFlushExample {
+    width: 300px;
+}
+
+
+/* EVOLUTION */
+#evolutionImgTemplate {
+    display: flex;
+    justify-content: space-between;
+}
+
+#evolutionImgTemplate img {
+    width: 80px;
+    height: 80px;
+}

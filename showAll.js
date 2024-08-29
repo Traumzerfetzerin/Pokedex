@@ -6,31 +6,34 @@ async function fetchDataJson(limit) { // offset = position ab dem es starten sol
 }
 
 
-function loadNext(limit) {
-    render(limit);
-}
-
-
 async function render(limit) {
     try {
         pokemons = await fetchDataJson(limit);
         document.getElementById('content').innerHTML = ``;
         document.getElementById('loadingBackground').style.display = "none";
+
         for (let i = 0; i < pokemons['results'].length; i++) {
             const element = pokemons['results'][i];
             console.log(element);
-            document.getElementById('content').innerHTML += /*HTML*/`
-                <div>
-                <b>#${i + 1} ${element['name']}</b><br>
-                </div>
-                <br>
-                <img src="${getPicture()}" alt="">
-            `;
+
+            await fetchAndSetPokeData(i + 1);
+
+            document.getElementById('content').innerHTML += /*HTML*/ `
+                <div class="card pointer cardAllPokemons" style="width: 18rem;" onclick="showCard(${pokemon.id})">
+                    <b>#${i + 1} ${element['name']}</b>
+                    <img class="imgAllPokemons" src="${changePicture()}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">${changeFlavorText()}</p>
+                    </div>
+                </div>`;
         }
-        limit += 5;
-        document.getElementById('button').innerHTML = `
-        <button onclick="loadNext(${limit})">NEXT</button>`;
     } catch (error) {
         console.error(error);
     }
+}
+
+
+function closeCard(){
+    document.getElementById('contentBig').classList.add("d-none");
+    document.getElementById('dialogBackground').classList.add("d-none");
 }

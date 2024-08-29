@@ -45,24 +45,27 @@ async function fetchAndSetPokeData(position) {
 async function showCard(position) {
     document.getElementById('loadingBackground').style.display = "inline";
     await fetchAndSetPokeData(position);
+    document.getElementById('contentBig').classList.remove("d-none");
+    document.getElementById('dialogBackground').classList.remove("d-none");
+    document.getElementById('body').style.overflow = "hidden";
     document.getElementById('loadingBackground').style.display = "none";
     let experience = pokemon['base_experience'];
     let height = pokemon['height'];
     let weight = pokemon['weight'];
     let color = species['color']['name'];
     let flavorTextEntry = changeFlavorText();
-    let flavorText = flavorTextEntry ? flavorTextEntry.flavor_text : 'No flavor text available';
+    let flavorText = flavorTextEntry ? flavorTextEntry : 'No flavor text available';
     let upperName = formName(pokemon['forms'][0]['name']);
 
     await fetchEvolution();
 
-    getAllFunctions(color, pokemon, upperName, flavorText, experience, height, weight)
+    getAllFunctions(color, pokemon, upperName, flavorText, experience, height, weight);
 }
 
 
 // GET ALL FUNCTIONS
 function getAllFunctions(color, pokemon, upperName, flavorText, experience, height, weight) {
-    getPicture();
+    renderPicture();
     getBackgroundColor(color);
     getPokemonID(pokemon);
     getPokemonName(upperName);
@@ -124,7 +127,7 @@ function changeHabitat() {
 
 
 // GET PICTURE
-function getPicture() {
+function renderPicture() {
     if (document.getElementById('bgImg').contains(document.getElementById('pokemonPicture'))) {
         document.getElementById('pokemonPicture').src = changePicture();
     } else {
@@ -163,8 +166,9 @@ function changeFlavorText() {
     let otherText = species?.flavor_text_entries?.find(entry => entry.language.name === 'en' && entry.version.name === 'heartgold');
     if (!otherText) {
         otherText = species?.flavor_text_entries?.find(entry => entry.language.name === 'en' && entry.version.name === 'scarlet');
-    } return otherText;
+    } return otherText.flavor_text;
 }
+
 
 // GET AUDIO
 function getAudio() {

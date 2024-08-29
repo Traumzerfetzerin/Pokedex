@@ -1,0 +1,31 @@
+.bg-body-tertiary {
+    --bs-bg-opacity: 0 !important;
+
+}
+
+section#content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.cardAllPokemons {
+    height: 500px !important;
+}
+
+.imgAllPokemons {
+    width: 100px;
+    height: auto;
+}
+
+#dialogBackground {
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: 10;
+}

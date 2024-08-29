@@ -1,5 +1,10 @@
 body {
     margin: 0;
+    overflow: auto;
+}
+
+header {
+    display: flex;
 }
 
 * {
@@ -14,7 +19,6 @@ body {
 td {
     width: 100%;
 }
-
 
 .center {
     display: flex;
@@ -31,6 +35,9 @@ td {
     cursor: pointer;
 }
 
+.flex {
+    display: flex;
+}
 
 #loadingBackground {
     background-color: black;
@@ -53,80 +60,4 @@ td {
 #loadingScreen img {
     width: 100px;
     height: 100px;
-}
-
-
-/* NAVBAR */
-#nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 16px;
-    gap: 100px;
-    padding-bottom: 50px;
-}
-
-#nav img {
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-}
-
-
-/* CARD-TOP */
-.IDname {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-#typ img {
-    width: 30px;
-    height: 30px;
-}
-
-
-/* CARD-MIDDLE */
-#contentBig {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px;
-}
-
-#bgImg {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-/* CARD-TEXT */
-.card-body {
-    max-width: 300px;
-}
-
-
-/* CARD-INFORMATION */
-#accordionFlushExample {
-    width: 300px;
-}
-
-
-/* EVOLUTION */
-#evolutionImgTemplate {
-    display: flex;
-    justify-content: space-between;
-}
-
-#evolutionImgTemplate img {
-    width: 80px;
-    height: 80px;
-}
-
-.flex {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
