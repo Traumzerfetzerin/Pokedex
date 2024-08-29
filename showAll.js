@@ -19,15 +19,13 @@ async function render(limit) {
             await fetchAndSetPokeData(i + 1);
 
             document.getElementById('content').innerHTML += /*HTML*/ `
-                <div class="card pointer cardAllPokemons" style="width: 18rem;" onclick="showCard(${pokemon.id})">
+                <div class="card pointer cardAllPokemons center" style="width: 18rem;"
+                    onclick="showCard(${pokemon.id})">
                     <div class="flex">
                         <b>#${i + 1} ${formName(element['name'])}</b>
-                        <div class="typeAll" id="typeAll${i}"></div>
                     </div>
-                    <img class="imgAllPokemons" src="${changePicture()}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">${changeFlavorText()}</p>
-                    </div>
+                    <div><img class="imgAllPokemons" src="${changePicture()}" class="card-img-top" alt="..." style="background-color:${species['color']['name']}"></div>
+                    <div class="typeAll" id="typeAll${i}"></div>
                 </div>`;
             getType(`typeAll${i}`);
         }
@@ -42,3 +40,4 @@ function closeCard() {
     document.getElementById('dialogBackground').classList.add("d-none");
     document.getElementById('body').style.overflow = "auto";
 }
+
