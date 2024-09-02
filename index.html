@@ -33,12 +33,6 @@
         </nav>
     </header>
 
-
-    <section id="content" class="center"></section>
-    <div class="center" style="padding-top: 50px; padding-bottom: 50px;">
-        <button type="button" class="btn btn-secondary btn-lg">Load more</button>
-    </div>
-
     <div id="dialogBackground" class="d-none" onclick="closeCard()"></div>
 
     <div id="loadingBackground">
@@ -47,9 +41,9 @@
         </div>
     </div>
 
-
     <section id="contentBig" class="d-none">
         <div class="cardBackground">
+
             <!-- NAVIGATION -->
             <section id="nav">
                 <div><img onclick="turnLeft()" id="switchLeft" src="img/left.png" alt="">
@@ -76,10 +70,12 @@
                             </div>
                         </div>
                     </div>
-                    <div id="bgImg"></div>
+                    <div class="center" id="bgImg">
+                        <div></div>
+                    </div>
 
                     <!-- CARD-INFORMATION -->
-                    <div class="card-body">
+                    <div class="card-body center">
                         <p id="flavorText"><b></b></p>
                     </div>
                     <div id="pokemonAudio" class="center"></div><br>
@@ -153,6 +149,15 @@
                     </div>
                 </div>
     </section>
+
+
+    <section id="content" class="center"></section>
+
+    <div class="center" style="padding-top: 50px; padding-bottom: 50px;">
+        <button type="button" class="btn btn-secondary btn-lg" onclick="loadMore()">Load more</button>
+    </div>
+
+
     </div>
 </body>
 

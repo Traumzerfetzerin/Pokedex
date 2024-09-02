@@ -1,14 +1,3 @@
-// // ÜBER DIE TASTATUR STEUERN 
-// document.addEventListener('keydown', function (event) {
-//     if (event.key === 'ArrowLeft') {
-//         turnLeft();
-//     } else if (event.key === 'ArrowRight') {
-//         turnRight();
-//     } else if (event.key === 'Escape') {
-//         backToScreen();
-//     }
-// });
-
 
 let pokemon, species;
 let pokemons = [];

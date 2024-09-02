@@ -19,6 +19,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    padding-top: 10px;
 }
 
 #typ img {
@@ -52,20 +53,22 @@
     z-index: 10;
 }
 
-#bgImg {
+/* #bgImg {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 300px;
 }
 
 #bgImg img {
     width: 100%;
-}
+    height: auto;
+} */
 
 
 /* CARD-TEXT */
 .card-body {
-    max-width: 300px;
+    max-width: 100%;
 }
 
 
