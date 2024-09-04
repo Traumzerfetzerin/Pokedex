@@ -1,3 +1,4 @@
+
 .bg-body-tertiary {
     --bs-bg-opacity: 0 !important;
 
@@ -12,6 +13,7 @@ section#content {
 }
 
 .cardAllPokemons {
+    width: 18rem; 
     height: 300px !important;
     justify-content: space-evenly;
 }
@@ -19,19 +21,6 @@ section#content {
 .imgAllPokemons {
     width: 100px;
     height: auto;
-}
-
-#dialogBackground {
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 10;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .typeAll img {
@@ -54,4 +43,9 @@ section#content {
     transform: scale(1);
     /* Rückkehr zur normalen Größe, wenn der Cursor das Bild verlässt */
     transition: transform 0.5s ease-out;
+}
+
+.loadingButton{
+    padding-top: 50px;
+    padding-bottom: 50px;
 }

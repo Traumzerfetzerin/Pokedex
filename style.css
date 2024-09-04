@@ -1,3 +1,4 @@
+
 body {
     margin: 0;
     overflow: auto;
@@ -67,4 +68,17 @@ td {
 #loadingScreen img {
     width: 100px;
     height: 100px;
+}
+
+#dialogBackground {
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

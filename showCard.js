@@ -2,7 +2,6 @@
 let pokemon, species;
 let pokemons = [];
 let typesArray = [];
-let limit;
 let speciesURL;
 let evolution;
 let nextPokemon;
