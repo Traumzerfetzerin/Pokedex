@@ -18,12 +18,12 @@ function HTMLtype(i) {
 }
 
 
-function HTMLcontent(limit, pokemons, i, element, species) {
+function HTMLcontent(i, element, species) {
     return /*HTML*/ `
     <div class="card pointer cardAllPokemons center" style="background-color:${species['color']['name']}"
         onclick="showCard(${pokemon.id})">
         <div class="flex">
-            <h2><b>#${i + 1}</b> ${formName(element['name'])}</h2>
+            <h2><b>#${pokemon.id}</b> ${formName(element['name'])}</h2>
         </div>
         <div class="bgAllPokemons"><img class="imgAllPokemons" src="${changePicture()}" class="card-img-top" alt="..."></div>
         <div class="typeAll" id="typeAll${i}"></div>

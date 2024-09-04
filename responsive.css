@@ -1,3 +1,21 @@
+@media (max-width: 1370px) {
+    .cardAllPokemons {
+        width: 350px;
+    }
+}
+
+@media (max-width: 1240px) {
+    .cardAllPokemons {
+        width: 300px;
+    }
+}
+
+@media (max-width: 1080px) {
+    .cardAllPokemons {
+        width: 250px;
+    }
+}
+
 @media (max-width: 1115px) {
     header img {
         width: 600px;
@@ -11,6 +29,12 @@
     }
 }
 
+@media (max-width: 920px) {
+    .cardAllPokemons {
+        width: 350px;
+    }
+}
+
 @media (max-width: 850px) {
     .cardBackground {
         width: 700px;
@@ -18,6 +42,10 @@
 
     .card {
         width: 700px;
+    }
+
+    .cardAllPokemons {
+        width: 300px;
     }
 }
 
@@ -28,6 +56,10 @@
 
     .card {
         width: 600px;
+    }
+
+    .cardAllPokemons {
+        width: 450px;
     }
 
     img#pokemonPicture {
@@ -42,6 +74,10 @@
 
     .card {
         width: 500px;
+    }
+
+    .cardAllPokemons {
+        width: 400px;
     }
 
     img#pokemonPicture {
@@ -78,6 +114,18 @@
     }
 }
 
+@media (max-width: 500px){
+    .cardAllPokemons{
+        width: 350px;
+    }
+}
+
+@media (max-width: 450px) {
+    .cardAllPokemons {
+        width: 300px;
+    }
+}
+
 @media (max-width: 420px) {
     .cardBackground {
         width: 310px;
@@ -99,5 +147,11 @@
 
     img#pokemonPicture {
         width: 300px;
+    }
+}
+
+@media (max-width: 390px) {
+    .cardAllPokemons {
+        width: 250px;
     }
 }
