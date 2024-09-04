@@ -51,4 +51,3 @@ async function loadMore(limit) {
     document.getElementById('loadingBackground').style.display = "none";
 }
 
-

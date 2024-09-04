@@ -33,7 +33,7 @@
 }
 
 .cardBackground {
-    background-color: #FFB6C0;
+    background-color: #C2C2C2;
     border-radius: 20px;
     padding: 10px;
 }
@@ -52,18 +52,6 @@
     bottom: 50px;
     z-index: 10;
 }
-
-/* #bgImg {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 300px;
-}
-
-#bgImg img {
-    width: 100%;
-    height: auto;
-} */
 
 
 /* CARD-TEXT */

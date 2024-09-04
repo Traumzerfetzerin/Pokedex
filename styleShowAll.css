@@ -23,13 +23,15 @@ section#content {
 
 #dialogBackground {
     background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    position: fixed;
     top: 0;
-    left: 0;
     right: 0;
     bottom: 0;
-    position: sticky;
-    z-index: 10;
-    height: 100vh;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .typeAll img {
@@ -38,7 +40,7 @@ section#content {
 }
 
 .imgAllPokemons:hover {
-    transform: scale(1.2);
+    transform: scale(1.5);
     /* Vergrößerung um 20% beim Hover */
     transition: transform 4s ease-out;
     /* Animation für den Hover-Effekt */
