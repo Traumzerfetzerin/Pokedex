@@ -44,12 +44,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* margin-top: 50px; */
     position: fixed;
-    top: 0;
-    left: 50px;
-    right: 50px;
-    bottom: 50px;
     z-index: 10;
 }
 
