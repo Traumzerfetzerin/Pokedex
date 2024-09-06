@@ -17,10 +17,12 @@ async function render() {
         for (let i = 0; i < pokemons['results'].length; i++) {
             const element = pokemons['results'][i];
 
-            await fetchAndSetPokeData(offset + i + 1);
+            let calculatedOffsetId = offset + i + 1;
+            
+            await fetchAndSetPokeData(calculatedOffsetId);
 
-            document.getElementById('content').innerHTML += HTMLcontent(i, element, species);
-            getType(`typeAll${i}`);
+            document.getElementById('content').innerHTML += HTMLcontent(calculatedOffsetId, element, species);
+            getType(`typeAll${calculatedOffsetId}`);
         }
     } catch (error) {
         console.error(error);
@@ -39,7 +41,7 @@ async function loadMore() {
     limit = limit + 20;
     offset = offset + 20;
     document.getElementById('loadingBackground').style.display = "inline";
-    document.getElementById('content').innerHTML += render();
+    render();
     document.getElementById('loadingBackground').style.display = "none";
 }
 
