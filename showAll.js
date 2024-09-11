@@ -2,10 +2,24 @@
 let limit = 20;
 let offset = 0;
 
+
 async function fetchDataJson() { // offset = position ab dem es starten soll
     let response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
     let responseAsJson = await response.json();
     return responseAsJson;
+}
+
+
+async function fetchAllPokemonJson() {
+    let allPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`);
+    let allPokemonAsJson = await allPokemon.json();
+    return allPokemonAsJson;
+}
+
+
+async function searchPokemon() {
+    let searchPokemon = await fetchAllPokemonJson();
+    let searchAllPokemon = [searchPokemon];
 }
 
 
@@ -18,7 +32,7 @@ async function render() {
             const element = pokemons['results'][i];
 
             let calculatedOffsetId = offset + i + 1;
-            
+
             await fetchAndSetPokeData(calculatedOffsetId);
 
             document.getElementById('content').innerHTML += HTMLcontent(calculatedOffsetId, element, species);
@@ -38,7 +52,6 @@ function closeCard() {
 
 
 async function loadMore() {
-    limit = limit + 20;
     offset = offset + 20;
     document.getElementById('loadingBackground').style.display = "inline";
     render();
@@ -49,3 +62,5 @@ async function loadMore() {
 function dontClose(event) {
     event.stopPropagation(); // stoppt Standardfunktionalität
 }
+
+
