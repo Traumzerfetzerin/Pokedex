@@ -17,9 +17,16 @@ async function fetchAllPokemonJson() {
 }
 
 
-async function searchPokemon() {
-    let searchPokemon = await fetchAllPokemonJson();
-    let searchAllPokemon = [searchPokemon];
+async function searchPokemon(valueSearchField) {
+    let resultsPokemon = await fetchAllPokemonJson();
+    console.log(valueSearchField);
+
+    let result = resultsPokemon.results.filter(currentSearchLine => currentSearchLine.name.toLowerCase().includes(valueSearchField.toLowerCase()));
+    // includes(eigenständige Funktion) prüft ob das was im Suchfeld eingegeben worden ist, zu Pokemon name passt
+    // 1. toLowerCase bezieht sich auf Arry 2. toLowerCase bezieht sich auf Suchfeld
+
+    console.log(result);
+
 }
 
 
