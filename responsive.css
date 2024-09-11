@@ -33,6 +33,20 @@
     .cardAllPokemons {
         width: 350px;
     }
+
+    .responsiveColumn {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #contentBig {
+        overflow-y: auto;
+    }
+
+    .cardBackground {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
 }
 
 @media (max-width: 850px) {
@@ -114,8 +128,8 @@
     }
 }
 
-@media (max-width: 500px){
-    .cardAllPokemons{
+@media (max-width: 500px) {
+    .cardAllPokemons {
         width: 350px;
     }
 }

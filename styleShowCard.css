@@ -36,7 +36,6 @@
     background-color: #C2C2C2;
     border-radius: 20px;
     padding: 10px;
-    overflow-y: scroll;
 }
 
 /* CARD-MIDDLE */
@@ -47,8 +46,8 @@
     align-items: center;
     position: fixed;
     z-index: 10;
-    overflow-y: scroll;
     max-height: 100%;
+    overflow-y: hidden;
 }
 
 
