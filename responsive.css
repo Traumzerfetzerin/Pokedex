@@ -21,37 +21,6 @@
     #contentBig {
         overflow-y: auto;
     }
-
-    .cardBackground {
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
-}
-
-@media (max-width: 850px) {
-    .cardBackground {
-        width: 700px;
-    }
-}
-
-@media (max-width: 750px) {
-    .cardBackground {
-        width: 600px;
-    }
-
-    img#pokemonPicture {
-        width: 400px;
-    }
-}
-
-@media (max-width: 650px) {
-    .cardBackground {
-        width: 500px;
-    }
-
-    img#pokemonPicture {
-        width: 300px;
-    }
 }
 
 @media (max-width: 630px) {
@@ -66,16 +35,8 @@
         flex-direction: column;
     }
 
-    .cardBackground {
-        width: 400px;
-    }
-
     #nav {
         gap: 50px;
-    }
-
-    img#pokemonPicture {
-        width: 400px;
     }
 }
 

@@ -50,6 +50,10 @@
     overflow-y: hidden;
 }
 
+#pokemonPicture {
+    max-width: 100%;
+}
+
 
 /* CARD-TEXT */
 .card-body {
