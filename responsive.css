@@ -54,10 +54,6 @@
         width: 700px;
     }
 
-    .card {
-        width: 700px;
-    }
-
     .cardAllPokemons {
         width: 300px;
     }
@@ -65,10 +61,6 @@
 
 @media (max-width: 750px) {
     .cardBackground {
-        width: 600px;
-    }
-
-    .card {
         width: 600px;
     }
 
@@ -83,10 +75,6 @@
 
 @media (max-width: 650px) {
     .cardBackground {
-        width: 500px;
-    }
-
-    .card {
         width: 500px;
     }
 
@@ -115,10 +103,6 @@
         width: 400px;
     }
 
-    .card {
-        width: 400px;
-    }
-
     #nav {
         gap: 50px;
     }
@@ -143,10 +127,6 @@
 @media (max-width: 420px) {
     .cardBackground {
         width: 310px;
-    }
-
-    .card {
-        width: 300px;
     }
 
     img#pokemonPicture {
