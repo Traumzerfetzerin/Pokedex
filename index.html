@@ -138,7 +138,7 @@
         <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
                 <form class="d-flex" role="search">
-                    <input id="filterPokemons" class="form-control me-2" type="search" placeholder="Search name"
+                    <input onclick="clearSearchField(this.value)" id="filterPokemons" class="form-control me-2" type="search" placeholder="Search name"
                         aria-label="Search"
                         onkeyup="searchPokemon(this.value)"><!-- this.value liest den Wert aus (bei Benutzereingabe) -->
                 </form>
@@ -154,7 +154,7 @@
 
     <section id="content" class="center"></section>
 
-    <div class="center loadingButton">
+    <div class="center loadingButton" id="loadButton">
         <button type="button" class="btn btn-secondary btn-lg" onclick="loadMore()">Load more</button>
     </div>
     </div>

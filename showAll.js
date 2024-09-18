@@ -19,14 +19,35 @@ async function fetchAllPokemonJson() {
 
 async function searchPokemon(valueSearchField) {
     let resultsPokemon = await fetchAllPokemonJson();
-    console.log(valueSearchField);
 
-    let result = resultsPokemon.results.filter(currentSearchLine => currentSearchLine.name.toLowerCase().includes(valueSearchField.toLowerCase()));
-    // includes(eigenständige Funktion) prüft ob das was im Suchfeld eingegeben worden ist, zu Pokemon name passt
-    // 1. toLowerCase bezieht sich auf Arry 2. toLowerCase bezieht sich auf Suchfeld
+    if (valueSearchField.length > 2) {
+        let result = resultsPokemon.results.filter(currentSearchLine =>
+            currentSearchLine.name.toLowerCase().includes(valueSearchField.toLowerCase()));
+        // includes(eigenständige Funktion) prüft ob das was im Suchfeld eingegeben worden ist, was im array pokemon name passt
+        // 1. toLowerCase bezieht sich auf Arry, 2. toLowerCase bezieht sich auf Suchfeld
 
-    console.log(result);
+        if (result.length > 0) {
+            document.getElementById('loadButton').style.display = "none";
+            document.getElementById('content').innerHTML = "";
+            for (let i = 0; i < result.length; i++) {
+                let pokemonResults = result[i]['name'];
+                await fetchAndSetPokeData(pokemonResults);
+                document.getElementById('content').innerHTML += HTMLcontent(pokemon.id, pokemon, species);
+                getType(`typeAll${pokemon.id}`);
+            }
+        }
+    }
+}
 
+
+async function clearSearchField(searchValue) {
+    offset = 0;
+
+    if (searchValue.length > 0) {
+        document.getElementById('content').innerHTML = "";
+        document.getElementById('loadButton').style.display = "flex";
+        render();
+    }
 }
 
 
