@@ -40,22 +40,8 @@
     }
 }
 
-@media (max-width: 420px) {
-    .cardBackground {
-        width: 310px;
-    }
-
-    img#pokemonPicture {
-        width: 300px;
-    }
-}
-
 @media (max-width: 415px) {
     header img {
         width: 200px;
-    }
-
-    img#pokemonPicture {
-        width: 300px;
     }
 }

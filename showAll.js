@@ -33,7 +33,6 @@ async function searchPokemon(valueSearchField) {
 async function render() {
     try {
         pokemons = await fetchDataJson();
-        document.getElementById('loadingBackground').style.display = "none";
 
         for (let i = 0; i < pokemons['results'].length; i++) {
             const element = pokemons['results'][i];
@@ -47,7 +46,8 @@ async function render() {
         }
     } catch (error) {
         console.error(error);
-    }
+
+    } document.getElementById('loadingBackground').style.display = "none";
 }
 
 
@@ -61,7 +61,7 @@ function closeCard() {
 async function loadMore() {
     offset = offset + 20;
     document.getElementById('loadingBackground').style.display = "inline";
-    render();
+    await render();
     document.getElementById('loadingBackground').style.display = "none";
 }
 
