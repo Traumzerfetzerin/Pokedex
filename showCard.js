@@ -154,7 +154,11 @@ function changeFlavorText() {
     let otherText = species?.flavor_text_entries?.find(entry => entry.language.name === 'en' && entry.version.name === 'heartgold');
     if (!otherText) {
         otherText = species?.flavor_text_entries?.find(entry => entry.language.name === 'en' && entry.version.name === 'scarlet');
-    } return otherText.flavor_text;
+    } if (otherText) {
+        return otherText.flavor_text;
+    } else {
+        return undefined;
+    }
 }
 
 
