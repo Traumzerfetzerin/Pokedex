@@ -84,8 +84,8 @@ td {
 #loadingScreen {
     position: absolute;
     z-index: 10;
-    top: 50%;
-    left: 50%;
+    top: calc(50vh - 50px);
+    left: calc(50vw - 50px);
 }
 
 #loadingScreen img {
