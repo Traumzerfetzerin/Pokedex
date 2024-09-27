@@ -23,7 +23,7 @@ async function fetchPokeData(position) {
 
 async function fetchAndSetPokeData(position) {
     try {
-        ({ pokemon, species, evolution, evoNext, evoLast } = await fetchPokeData(position));
+        ({ pokemon, species } = await fetchPokeData(position));
     } catch (error) {
         console.error(error);
     }
@@ -128,6 +128,7 @@ function renderPicture() {
 
 
 // CHANGE PICUTRE
+// ?. prüft ob vorhanden, wenn nicht füllt Variable mit undefined
 function changePicture() {
     let otherPicture = pokemon?.sprites?.other?.dream_world?.front_default;
     if (!otherPicture) {
@@ -259,14 +260,13 @@ async function fetchEvolution() {
 
 
 // GET EVOLUTION
+// ?. prüft ob vorhanden, wenn nicht füllt Variable mit undefined
 async function getEvolution() {
     document.getElementById('evolutionImgTemplate').innerHTML = '';
     let evolutionOne = evolution?.chain?.species?.name;
     let evolutionTwo = evolution?.chain?.evolves_to[0]?.species.name;
     let evolutionThree = evolution?.chain?.evolves_to[0]?.evolves_to[0]?.species?.name;
     let evolutionFour = evolution?.chain?.evolves_to[0]?.evolves_to[0]?.evolves_to[0]?.species?.name;
-
-    // ?. füllt variable mit undefined
 
     await generateEvolutionTemplate(evolutionOne);
     await generateEvolutionTemplate(evolutionTwo);

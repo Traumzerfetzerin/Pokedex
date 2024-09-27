@@ -11,16 +11,16 @@ async function fetchDataJson() { // offset = position ab dem es starten soll
 
 
 async function fetchAllPokemonJson() {
-    let allPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`);
+    let allPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=1000&offset=0`);
     let allPokemonAsJson = await allPokemon.json();
     return allPokemonAsJson;
 }
 
 
 async function searchPokemon(valueSearchField) {
-    let resultsPokemon = await fetchAllPokemonJson();
 
     if (valueSearchField.length > 2) {
+        let resultsPokemon = await fetchAllPokemonJson();
         let result = resultsPokemon.results.filter(currentSearchLine =>
             currentSearchLine.name.toLowerCase().includes(valueSearchField.toLowerCase()));
         // includes(eigenständige Funktion) prüft ob das was im Suchfeld eingegeben worden ist, was im array pokemon name passt
