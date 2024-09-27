@@ -11,7 +11,7 @@ async function fetchDataJson() { // offset = position ab dem es starten soll
 
 
 async function fetchAllPokemonJson() {
-    let allPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=1000&offset=0`);
+    let allPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${await generateLastOne()}&offset=0`);
     let allPokemonAsJson = await allPokemon.json();
     return allPokemonAsJson;
 }
