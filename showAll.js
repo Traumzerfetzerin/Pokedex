@@ -28,7 +28,7 @@ async function searchPokemon(valueSearchField) {
         // 1. toLowerCase bezieht sich auf Arry, 2. toLowerCase bezieht sich auf Suchfeld
 
         if (result.length > 0) {
-            ifSearchTrue(result);
+            await ifSearchTrue(result);
         }
     }
 }
@@ -50,10 +50,10 @@ async function ifSearchTrue(result) {
 async function clearSearchField(searchValue) {
     offset = 0;
 
-    document.getElementById('filterPokemons').innerHTML = "";
+    document.getElementById('filterPokemons').value = "";
     document.getElementById('content').innerHTML = "";
     document.getElementById('loadButton').style.display = "flex";
-    render();
+    await render();
 }
 
 

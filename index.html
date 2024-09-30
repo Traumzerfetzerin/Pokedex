@@ -138,7 +138,7 @@
         <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
                 <form class="d-flex" role="search">
-                    <input id="filterPokemons" class="form-control me-2" type="search" placeholder="Search name"
+                    <input id="filterPokemons" class="form-control me-2" type="search" pattern="[A-Za-z]" placeholder="Search name"
                         aria-label="Search"
                         onkeyup="searchPokemon(this.value)"><!-- this.value liest den Wert aus (bei Benutzereingabe) -->
                 </form>
