@@ -18,7 +18,6 @@ async function fetchAllPokemonJson() {
 
 
 async function searchPokemon(valueSearchField) {
-
     if (valueSearchField.length > 2) {
         document.getElementById('loadingBackground').style.display = "inline";
         let resultsPokemon = await fetchAllPokemonJson();
