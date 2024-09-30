@@ -18,8 +18,9 @@ async function fetchAllPokemonJson() {
 
 
 async function searchPokemon(valueSearchField) {
+
     if (valueSearchField.length > 2) {
-        document.getElementById('loadingBackground').style.display = "inline";
+        document.getElementById('filterPokemons').disabled = true;
         let resultsPokemon = await fetchAllPokemonJson();
         let result = resultsPokemon.results.filter(currentSearchLine =>
             currentSearchLine.name.toLowerCase().includes(valueSearchField.toLowerCase()));
@@ -40,7 +41,7 @@ async function ifSearchTrue(result) {
         await fetchAndSetPokeData(pokemonResults);
         document.getElementById('content').innerHTML += HTMLcontent(pokemon.id, pokemon, species);
         getType(`typeAll${pokemon.id}`);
-        document.getElementById('loadingBackground').style.display = "none";
+        document.getElementById('filterPokemons').disabled = false;
     }
 }
 
