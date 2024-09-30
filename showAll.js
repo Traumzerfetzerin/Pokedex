@@ -33,6 +33,7 @@ async function searchPokemon(valueSearchField) {
     }
 }
 
+
 async function ifSearchTrue(result) {
     document.getElementById('loadButton').style.display = "none";
     document.getElementById('content').innerHTML = "";
@@ -45,15 +46,16 @@ async function ifSearchTrue(result) {
     }
 }
 
+
 async function clearSearchField(searchValue) {
     offset = 0;
 
-    if (searchValue.length > 0) {
-        document.getElementById('content').innerHTML = "";
-        document.getElementById('loadButton').style.display = "flex";
-        render();
-    }
+    document.getElementById('filterPokemons').innerHTML = "";
+    document.getElementById('content').innerHTML = "";
+    document.getElementById('loadButton').style.display = "flex";
+    render();
 }
+
 
 
 async function render() {
