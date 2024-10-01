@@ -31,12 +31,12 @@ async function searchPokemon(valueSearchField) {
         if (result.length > 0) {
             await ifSearchTrue(result);
         }
+        document.getElementById('loadingBackground').style.display = "none";
     }
 }
 
 
 async function ifSearchTrue(result) {
-    document.getElementById('loadingBackground').style.display = "none";
     document.getElementById('loadButton').style.display = "none";
     document.getElementById('content').innerHTML = "";
     for (let i = 0; i < result.length; i++) {
