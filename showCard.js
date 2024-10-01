@@ -8,8 +8,11 @@ let nextPokemon;
 let lastPokemon;
 
 
+
+
 async function fetchPokeData(position) {
     let responsePokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${position}/`);
+    if (position == 'squawkabilly-green-plumage') { position = '931'; }
     let responseSpecies = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${position}/`);
     let responsePokemonAsJson = await responsePokemon.json();
     let responseSpeciesAsJson = await responseSpecies.json();

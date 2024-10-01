@@ -93,7 +93,6 @@ async function loadMore() {
     offset = offset + 20;
     document.getElementById('loadingBackground').style.display = "inline";
     await render();
-    document.getElementById('loadingBackground').style.display = "none";
 }
 
 
