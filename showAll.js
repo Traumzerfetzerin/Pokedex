@@ -18,9 +18,10 @@ async function fetchAllPokemonJson() {
 
 
 async function searchPokemon(valueSearchField) {
-
+    valueSearchField = valueSearchField.replace(/[^a-zA-Z]/g, '');
     if (valueSearchField.length > 2) {
         document.getElementById('filterPokemons').disabled = true;
+        document.getElementById('loadingBackground').style.display = "inline";
         let resultsPokemon = await fetchAllPokemonJson();
         let result = resultsPokemon.results.filter(currentSearchLine =>
             currentSearchLine.name.toLowerCase().includes(valueSearchField.toLowerCase()));
@@ -35,6 +36,7 @@ async function searchPokemon(valueSearchField) {
 
 
 async function ifSearchTrue(result) {
+    document.getElementById('loadingBackground').style.display = "none";
     document.getElementById('loadButton').style.display = "none";
     document.getElementById('content').innerHTML = "";
     for (let i = 0; i < result.length; i++) {
@@ -47,11 +49,12 @@ async function ifSearchTrue(result) {
 }
 
 
-async function clearSearchField(searchValue) {
+async function clearSearchField() {
     offset = 0;
 
     document.getElementById('filterPokemons').value = "";
     document.getElementById('content').innerHTML = "";
+    document.getElementById('filterPokemons').disabled = false;
     document.getElementById('loadButton').style.display = "flex";
     await render();
 }
